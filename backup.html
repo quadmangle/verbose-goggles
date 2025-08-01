@@ -19,9 +19,6 @@
       --clr-card-shadow: 0 2px 28px #b6b9f7a8,
         -20px 20px 40px hsl(270 42% 45% / 0.18);
       --clr-card-shadow-dark: 0 2px 24px #11142b88;
-      --clr-bg: #fff;
-      --clr-tx: #333;
-      --gap: 10px;
     }
     body {
       background: linear-gradient(135deg, #f2f6fa 0%, #dde3fa 100%);
@@ -511,109 +508,6 @@
       .hero-section p {
         font-size: 0.85rem;
       }
-    }
-
-    /* Join Form Styles */
-    #joinForm {
-        background: #f9f9fd;
-        padding: 1.5rem;
-        border-radius: 12px;
-        border: 1px solid #ccc;
-        margin-top: 1em; /* To give it some space from the modal header */
-    }
-    #joinForm label {
-        display: block;
-        margin-top: 1rem;
-        font-weight: 600;
-    }
-    #joinForm input, #joinForm select, #joinForm textarea {
-        width: 100%;
-        padding: 0.6rem;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 1rem;
-        margin-top: 0.25rem;
-    }
-    #joinForm textarea { resize: vertical; }
-    #joinForm .form-pairs {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem 2rem;
-    }
-    @media (max-width: 600px) {
-        #joinForm .form-pairs {
-          grid-template-columns: 1fr;
-        }
-    }
-    #joinForm .form-section {
-        border: 1px dashed #ccc;
-        border-radius: 8px;
-        background: #fff;
-        padding: 1rem;
-        margin-top: 1.5rem;
-    }
-    #joinForm .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    #joinForm .circle-btn {
-        width: 28px; height: 28px;
-        border-radius: 50%;
-        border: none;
-        background: var(--clr-primary);
-        color: white;
-        font-weight: bold;
-        font-size: 1.3rem;
-        cursor: pointer;
-        user-select: none;
-        margin-left: 0.3rem;
-    }
-    #joinForm .circle-btn.remove {
-        background: #dc3545;
-    }
-    #joinForm .accept-btn, #joinForm .edit-btn {
-        margin-top: 1rem;
-        padding: 0.4rem 1rem;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1rem;
-    }
-    #joinForm .accept-btn {
-        background: #28a745;
-        color: white;
-    }
-    #joinForm .edit-btn {
-        background: #ffc107;
-        color: black;
-    }
-    #joinForm .form-section.completed {
-        border-color: #28a745;
-    }
-    #joinForm .form-section.completed h2::after {
-        content: " ✅";
-        color: #28a745;
-    }
-    #joinForm .modal-footer {
-        margin-top: 2rem;
-        text-align: center;
-    }
-    #joinForm button.submit-btn {
-        width: 120px;
-        height: 48px;
-        background: var(--clr-primary);
-        border: none;
-        border-radius: 12px;
-        color: white;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        box-shadow: 0 4px 8px #0004;
-        transition: background 0.3s;
-    }
-    #joinForm button.submit-btn:hover {
-        background: var(--clr-accent-dark);
     }
   </style>
 </head>
@@ -1207,9 +1101,6 @@
       m.innerHTML = type === "contact" ? contactModalHTML() : joinModalHTML();
       root.appendChild(m);
       let modal = m.querySelector(".modal-content");
-      if (type === 'join') {
-        initializeJoinForm(modal);
-      }
       // CLOSE
       function close() {
         root.innerHTML = "";
@@ -1230,121 +1121,6 @@
       );
       makeDraggable(modal);
     }
-    function initializeJoinForm(modal) {
-    // Helper: Toggle accept/edit states on dynamic sections
-    function toggleSectionState(section, accepted) {
-      const inputs = section.querySelectorAll('input[type=text]');
-      const acceptBtn = section.querySelector('.accept-btn');
-      const editBtn = section.querySelector('.edit-btn');
-      const addBtn = section.querySelector('.circle-btn.add');
-      const removeBtn = section.querySelector('.circle-btn.remove');
-
-      if (accepted) {
-        // Lock inputs
-        inputs.forEach(input => input.disabled = true);
-        // Show edit, hide accept
-        if (acceptBtn) acceptBtn.style.display = 'none';
-        if (editBtn) editBtn.style.display = 'inline-block';
-        // Disable add/remove while accepted
-        if (addBtn) addBtn.disabled = true;
-        if (removeBtn) removeBtn.disabled = true;
-        section.classList.add('completed');
-      } else {
-        // Unlock inputs
-        inputs.forEach(input => input.disabled = false);
-        // Show accept, hide edit
-        if (acceptBtn) acceptBtn.style.display = 'inline-block';
-        if (editBtn) editBtn.style.display = 'none';
-        // Enable add/remove
-        if (addBtn) addBtn.disabled = false;
-        if (removeBtn) removeBtn.disabled = false;
-        section.classList.remove('completed');
-      }
-    }
-
-    const formSections = modal.querySelectorAll('.form-section');
-
-    formSections.forEach(section => {
-      const addBtn = section.querySelector('.circle-btn.add');
-      const removeBtn = section.querySelector('.circle-btn.remove');
-      const acceptBtn = section.querySelector('.accept-btn');
-      const editBtn = section.querySelector('.edit-btn');
-      const inputsContainer = section.querySelector('.inputs');
-
-      if (addBtn) {
-        addBtn.addEventListener('click', () => {
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.placeholder = `Enter ${section.querySelector('h2').textContent}`;
-          inputsContainer.appendChild(input);
-          input.focus();
-        });
-      }
-
-      if (removeBtn) {
-        removeBtn.addEventListener('click', () => {
-          // Only remove if not accepted (inputs enabled)
-          if (!inputsContainer.querySelector('input[disabled]')) {
-            if (inputsContainer.lastElementChild) {
-              inputsContainer.removeChild(inputsContainer.lastElementChild);
-            }
-          }
-        });
-      }
-
-      if (acceptBtn) {
-        acceptBtn.addEventListener('click', () => {
-          const inputs = inputsContainer.querySelectorAll('input[type=text]');
-          if (inputs.length === 0) {
-            alert('Add at least one entry.');
-            return;
-          }
-          // Validate no empty inputs
-          for (const input of inputs) {
-            if (!input.value.trim()) {
-              alert('Please fill out all fields before accepting.');
-              return;
-            }
-          }
-          toggleSectionState(section, true);
-        });
-      }
-
-      if (editBtn) {
-        editBtn.addEventListener('click', () => {
-          toggleSectionState(section, false);
-        });
-      }
-    });
-
-    // Submit handler (demo)
-    const joinForm = modal.querySelector('#joinForm');
-    joinForm.addEventListener('submit', e => {
-      e.preventDefault();
-
-      // Optional: validate dynamic sections are accepted or empty
-      for (const section of formSections) {
-        const inputs = section.querySelectorAll('input[type=text]');
-        if (inputs.length > 0 && !section.classList.contains('completed')) {
-          alert(`Please accept your entries in "${section.querySelector('h2').textContent}" or remove them.`);
-          return;
-        }
-      }
-
-      alert('Join form submitted successfully!');
-      joinForm.reset();
-
-      // Reset all sections to initial state
-      formSections.forEach(section => {
-        toggleSectionState(section, false);
-        const inputsContainer = section.querySelector('.inputs');
-        if(inputsContainer) {
-            inputsContainer.innerHTML = '';
-        }
-      });
-    });
-  }
-
     // --- Join Modal HTML
     function joinModalHTML() {
       return `
@@ -1353,108 +1129,53 @@
           <h3>${lang === "en" ? "Join Us" : "Únete a Nosotros"}</h3>
           <button class="close-modal" aria-label="Close">&times;</button>
         </div>
-        <form id="joinForm" autocomplete="off" novalidate>
-    <div class="form-pairs">
-      <div>
-        <label for="name">Name</label>
-        <input id="name" name="name" required placeholder="Enter your name" />
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" required placeholder="Enter your email" />
-      </div>
-      <div>
-        <label for="phone">Phone</label>
-        <input id="phone" type="tel" name="phone" required placeholder="Enter your phone" />
-      </div>
-      <div></div>
-    </div>
-
-    <!-- Dynamic Sections -->
-    <div class="form-section" data-section="Skills">
-      <div class="section-header">
-        <h2>Skills</h2>
-        <div>
-          <button type="button" class="circle-btn add" title="Add field">+</button>
-          <button type="button" class="circle-btn remove" title="Remove last field">−</button>
-        </div>
-      </div>
-      <div class="inputs"></div>
-      <button type="button" class="accept-btn">Accept</button>
-      <button type="button" class="edit-btn" style="display:none;">Edit</button>
-    </div>
-
-    <div class="form-section" data-section="Education">
-      <div class="section-header">
-        <h2>Education</h2>
-        <div>
-          <button type="button" class="circle-btn add" title="Add field">+</button>
-          <button type="button" class="circle-btn remove" title="Remove last field">−</button>
-        </div>
-      </div>
-      <div class="inputs"></div>
-      <button type="button" class="accept-btn">Accept</button>
-      <button type="button" class="edit-btn" style="display:none;">Edit</button>
-    </div>
-
-    <div class="form-section" data-section="Certification">
-      <div class="section-header">
-        <h2>Certification</h2>
-        <div>
-          <button type="button" class="circle-btn add" title="Add field">+</button>
-          <button type="button" class="circle-btn remove" title="Remove last field">−</button>
-        </div>
-      </div>
-      <div class="inputs"></div>
-      <button type="button" class="accept-btn">Accept</button>
-      <button type="button" class="edit-btn" style="display:none;">Edit</button>
-    </div>
-
-    <div class="form-section" data-section="Hobbies">
-      <div class="section-header">
-        <h2>Hobbies</h2>
-        <div>
-          <button type="button" class="circle-btn add" title="Add field">+</button>
-          <button type="button" class="circle-btn remove" title="Remove last field">−</button>
-        </div>
-      </div>
-      <div class="inputs"></div>
-      <button type="button" class="accept-btn">Accept</button>
-      <button type="button" class="edit-btn" style="display:none;">Edit</button>
-    </div>
-
-    <div class="form-section">
-      <h2>What are you interested about?</h2>
-      <select id="jn-interest" required>
-        <option value="" disabled selected>Select an option</option>
-        <option>Business Operations</option>
-        <option>Contact Center</option>
-        <option>IT Support</option>
-        <option>Professionals</option>
-      </select>
-    </div>
-
-    <div class="form-section">
-      <h2>Continued Education</h2>
-      <div class="inputs"></div>
-      <button type="button" class="circle-btn add" title="Add field">+</button>
-    </div>
-
-    <div class="form-section">
-      <h2>Experience</h2>
-      <div class="inputs"></div>
-      <button type="button" class="circle-btn add" title="Add field">+</button>
-    </div>
-
-    <div>
-      <label for="about">Tell us about yourself</label>
-      <textarea id="about" rows="4" placeholder="Tell us about yourself..."></textarea>
-    </div>
-
-    <div class="modal-footer">
-      <button type="submit" class="submit-btn">Submit</button>
-    </div>
-  </form>
+        <form id="join-form">
+          <div class="form-row">
+            <label for="name">${lang === "en" ? "Name" : "Nombre"}</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="${lang === "en" ? "Enter your name" : "Ingresa tu nombre"}"
+              required
+            />
+            <label for="email">${lang === "en" ? "Email" : "Correo Electrónico"}</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="${lang === "en" ? "Enter your email" : "Ingresa tu correo"}"
+              required
+            />
+            <label for="phone">${lang === "en" ? "Phone" : "Teléfono"}</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="${lang === "en" ? "Enter your phone" : "Ingresa tu teléfono"}"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="comment">${lang === "en" ? "Tell us about yourself" : "Cuéntanos sobre ti"}</label>
+            <textarea
+              id="comment"
+              name="comment"
+              rows="4"
+              placeholder="${lang === "en" ? "Tell us about yourself..." : "Cuéntanos sobre ti..."}"
+            ></textarea>
+          </div>
+          <div class="modal-actions" style="margin-top:1.7em;">
+            <button type="button" class="submit-button cancel">${lang === "en" ? "Cancel" : "Cancelar"}</button>
+            <button
+              type="submit"
+              class="submit-button"
+              style="background:var(--clr-accent);color:#fff;"
+            >
+              ${lang === "en" ? "Submit" : "Enviar"}
+            </button>
+          </div>
+        </form>
       </div>
       `;
     }
