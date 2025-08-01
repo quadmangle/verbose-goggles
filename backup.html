@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title data-en="Business Operations Optimization | [Your Company]" data-es="Optimización de Operaciones Empresariales | [Su Empresa]">
-    Business Operations Optimization | [Your Company]
-  </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OPS Unified Portal</title>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css" />
+  <link
+    rel="stylesheet"
+    href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css"
+  />
   <style>
     :root {
       --clr-primary: #00c4ff;
@@ -19,7 +19,6 @@
       --clr-card-shadow: 0 2px 28px #b6b9f7a8,
         -20px 20px 40px hsl(270 42% 45% / 0.18);
       --clr-card-shadow-dark: 0 2px 24px #11142b88;
-      --squircle: 12px; /* smaller border radius for rectangles */
     }
     body {
       background: linear-gradient(135deg, #f2f6fa 0%, #dde3fa 100%);
@@ -396,227 +395,97 @@
       letter-spacing: 0.04em;
     }
 
-    /* --- Compact Mobile Navigation Bar --- */
+    /* New Mobile Bottom Nav */
+    .mobile-bottom-nav {
+      display: none; /* default hidden */
+      position: fixed;
+      bottom: 50px; /* above footer */
+      left: 0;
+      width: 100%;
+      background: var(--clr-footer);
+      color: white;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.4rem 0;
+      gap: 0.5rem;
+      z-index: 120;
+      border-radius: 14px 14px 0 0;
+      box-sizing: border-box;
+    }
+
+    /* Show mobile bottom nav only on small screens */
     @media (max-width: 900px) {
-      #mobileNav {
-        position: fixed;
-        bottom: 25px;
-        right: 15px;
+      .mobile-bottom-nav {
         display: flex;
-        align-items: center;
-        gap: 6px; /* smaller gap */
-        z-index: 3000;
-        transition: width 0.3s ease, background-color 0.3s ease;
-        width: auto;
-        background: transparent;
-      }
-      #mobileNav.open {
-        width: 100%;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        padding: 4px 8px; /* smaller padding */
-        background: white;
-        box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
-        justify-content: center;
-        gap: 8px;
-      }
-
-      /* Nav items container */
-      .nav-items {
-        display: none;
-        gap: 6px; /* smaller gap */
-      }
-      #mobileNav.open .nav-items {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 8px;
-      }
-
-      /* Nav buttons base - rectangular */
-      .nav-btn {
-        font-size: 0.95rem; /* smaller font */
-        color: black;
-        background: white;
-        box-shadow: 0 0 4px rgba(0,0,0,0.1);
-        width: 80%; /* changed from auto */
-        height: 40px; /* fixed height */
-        min-width: 36px; /* min width */
-        padding: 0 5px; /* changed from 0 10px */
-        border-radius: var(--squircle);
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        user-select: none;
-        position: relative;
-        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-        text-decoration: none;
-      }
-      .nav-btn i {
-        font-size: 0.6rem; /* reduced from 1rem */
-      }
-      .nav-btn:focus-visible {
-        outline: 2px solid #000;
-        outline-offset: 2px;
-      }
-
-      /* Main toggle button */
-      .nav-btn.main {
-        font-weight: 500;
-        font-size: 14px;
-        padding: 8px 16px;
-        border-radius: calc(var(--squircle) * 1.5);
-        background-image: linear-gradient(90deg, #fcecfe, #fbf6e7, #e6fcf5);
-        color: #14387e;
-        box-shadow:
-          0 1px 2px rgba(0,0,0,0.02),
-          0 4px 16px rgba(0,0,0,0.02),
-          0 4px 24px rgba(0,0,0,0.02);
-        user-select: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: color 0.3s ease;
-        min-width: auto;
-        width: auto;
-        height: 36px;
-      }
-      #mobileNav.open .nav-btn.main {
-        color: #14387e;
-      }
-      .nav-btn.main.open {
-        transform: rotate(135deg);
-        transition: transform 0.3s ease;
-      }
-
-      /* Dropdown */
-      .dropdown {
-        position: relative;
-      }
-      .dropdown-menu {
-        position: absolute;
-        bottom: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #f9f9f9;
-        color: #222;
-        border-radius: 6px;
-        padding: 6px 8px;
-        display: none;
-        flex-direction: column;
-        gap: 4px;
-        font-size: 0.75rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        user-select: none;
-        width: 160px;
-        white-space: nowrap;
-      }
-      .dropdown-menu a {
-        color: #222;
-        text-decoration: none;
-        padding: 4px 6px;
-        transition: background-color 0.2s, color 0.2s;
-      }
-      .dropdown-menu a:hover {
-        background: #eee;
-        color: #000;
-      }
-      .dropdown.open .dropdown-menu {
-        display: flex;
-      }
-
-      /* Sketch button */
-      .sketch-button {
-        cursor: pointer;
-        appearance: none;
-        outline: none;
-        border: none;
-        font-family: inherit;
-        font-weight: 500;
-        position: relative;
-        border-radius: calc(var(--squircle) * 1.5);
-        padding: 8px 16px;
-        font-size: 14px;
-        color: #14387e;
-        box-shadow:
-          0 1px 2px rgba(0,0,0,0.02),
-          0 4px 16px rgba(0,0,0,0.02),
-          0 4px 24px rgba(0,0,0,0.02);
-        background-image: linear-gradient(90deg, #fcecfe, #fbf6e7, #e6fcf5);
-        user-select: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: color 0.3s ease;
-      }
-      .nav-btn.main.open,
-      #mobileNav.open .sketch-button {
-        color: black;
-      }
-      .sketch-button.start svg {
-        animation: stroke 1s linear;
-      }
-
-      /* Animated stroke effect container */
-      .lines {
-        position: absolute;
-        inset: 0;
-        mix-blend-mode: hard-light;
-        pointer-events: none;
-        z-index: 1;
-        transform: scaleX(0.92) scaleY(0.95) translateZ(0);
-      }
-      .lines > div {
-        position: absolute;
-        inset: 0;
-      }
-      .lines > div:last-child {
-        transform: rotate(180deg);
-      }
-      .lines svg {
-        display: block;
-        position: absolute;
-        inset: 0;
-        overflow: visible;
-        fill: none;
-        stroke-width: 1;
-        stroke-dasharray: 2 10;
-        stroke-dashoffset: 14;
-        opacity: 0;
-        stroke: #c9e9ff;
-        width: 100%;
-        height: 100%;
-      }
-      .lines svg:nth-child(1) { stroke: #f8fcff; }
-      .lines svg:nth-child(2) {
-        stroke-width: 6px;
-        filter: blur(20px);
-      }
-      .lines svg:nth-child(3) {
-        stroke-width: 5px;
-        filter: blur(6px);
-      }
-      .lines svg:nth-child(4) {
-        stroke-width: 10px;
-        filter: blur(56px);
-      }
-
-      @keyframes stroke {
-        30%, 55% {
-          opacity: 1;
-        }
-        100% {
-          stroke-dashoffset: 4;
-          opacity: 0;
-        }
       }
     }
-    @media (min-width: 901px) {
-      #mobileNav {
-        display: none;
-      }
+
+    /* Buttons in mobile nav */
+    .mobile-bottom-nav button,
+    .mobile-bottom-nav .nav-item {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+      position: relative;
+    }
+
+    .mobile-bottom-nav button:hover,
+    .mobile-bottom-nav .nav-item:hover {
+      background: var(--clr-primary);
+    }
+
+    /* Services dropdown */
+    .services-dropdown {
+      position: absolute;
+      bottom: 40px; /* positioned above nav bar */
+      background: var(--clr-footer);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-weight: 400;
+      font-size: 0.85rem;
+      min-width: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 130;
+    }
+
+    .services-dropdown a {
+      color: white;
+      text-decoration: none;
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .services-dropdown a:hover {
+      background: var(--clr-primary);
+    }
+
+    /* Show dropdown when active */
+    .services-dropdown.active {
+      display: flex;
+    }
+
+    /* Hamburger icon style */
+    .hamburger-icon {
+      font-size: 1.3rem;
+      user-select: none;
+      line-height: 1;
     }
 
     /* Responsive */
@@ -642,51 +511,118 @@
     }
   </style>
 </head>
-<body class="page-business-ops">
-  <!-- Navigation Menu -->
-  <nav>
-    <a href="index.html" data-en="Business Operations" data-es="Operaciones Empresariales">Business Operations</a>
-    <a href="contact-center.html" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
-    <a href="it-support.html" data-en="IT Support" data-es="Soporte IT">IT Support</a>
-    <a href="professional-services.html" data-en="Professionals" data-es="Profesionales">Professionals</a>
+<body>
+  <!-- NAV -->
+  <nav class="ops-nav" aria-label="OPS Navigation">
+    <span class="ops-logo">OPS</span>
+    <div class="nav-links">
+      <a class="nav-link" href="#">Business Operations</a>
+      <a class="nav-link" href="#">Contact Center</a>
+      <a class="nav-link" href="#">IT Support</a>
+      <a class="nav-link" href="#">Professionals</a>
+    </div>
+    <div class="toggles">
+      <button class="toggle-btn" id="lang-toggle">ES</button>
+      <button class="toggle-btn" id="theme-toggle">Dark</button>
+    </div>
   </nav>
 
-  <!-- Toggles container -->
-  <div id="toggles">
-    <button id="btn-lang" aria-label="Toggle language" aria-pressed="false">EN</button>
-    <button id="btn-theme" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
+  <!-- HERO SECTION -->
+  <section
+    class="hero-section"
+    role="banner"
+    aria-label="Scale your business with 24/7 expert support"
+  >
+    <h1>
+      Scale your business with<br />24/7 expert support
+    </h1>
+    <p>
+      OPS provides managed services, IT solutions, and remote professionals to
+      drive your growth.
+    </p>
+    <button class="btn-consultation" type="button">BOOK A CONSULTATION</button>
+  </section>
+
+  <!-- CARDS GRID -->
+  <div class="grid-container">
+    <div class="card" id="card-ops"></div>
+    <div class="card" id="card-cc"></div>
+    <div class="card" id="card-it"></div>
+    <div class="card" id="card-pro"></div>
   </div>
 
-  <div id="mobileNav" aria-label="Mobile navigation">
-    <div class="nav-items">
-      <a href="javascript:void(0)" onclick="openContactModal()" class="nav-btn" title="Contact Us" aria-label="Contact Us"><i class="fa fa-envelope"></i></a>
-      <a href="javascript:void(0)" onclick="openJoinModal()" class="nav-btn" title="Join Us" aria-label="Join Us"><i class="fa fa-user-plus"></i></a>
-      <a href="javascript:void(0)" onclick="openChatbot()" class="nav-btn" title="Chatbot" aria-label="Chatbot"><i class="fa fa-comment"></i></a>
-      <button id="langBtn" class="nav-btn" aria-label="Toggle language">ES</button>
-      <button id="themeBtn" class="nav-btn" aria-label="Toggle theme">Dark</button>
-      <div class="dropdown">
-        <button id="svcBtn" class="nav-btn" aria-expanded="false" aria-haspopup="true" aria-controls="svcMenu" aria-label="Toggle services menu"><i class="fa fa-bars"></i></button>
-        <div class="dropdown-menu" id="svcMenu" role="menu" aria-label="Services menu">
-          <a href="javascript:void(0)" onclick="openModal('ops')" role="menuitem">Ops</a>
-          <a href="javascript:void(0)" onclick="openModal('cc')" role="menuitem">Center</a>
-          <a href="javascript:void(0)" onclick="openModal('it')" role="menuitem">IT</a>
-          <a href="javascript:void(0)" onclick="openModal('pro')" role="menuitem">Pros</a>
-        </div>
-      </div>
-      <a href="index.html" class="nav-btn" title="Home" aria-label="Home"><i class="fa fa-home"></i></a>
+  <!-- DESKTOP FABs -->
+  <div class="fab-stack">
+    <button class="fab-btn" id="fab-join" title="Join Us">
+      <i class="fa-thin fa-user-plus"></i>
+    </button>
+    <button class="fab-btn" id="fab-contact" title="Contact Us">
+      <i class="fa-thin fa-envelope"></i>
+    </button>
+    <button class="fab-btn" id="fab-chat" title="Chatbot">
+      <i class="fa-thin fa-comment-alt"></i>
+    </button>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV (NEW) -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <button
+      id="mobile-home-btn"
+      class="nav-item"
+      title="Home"
+      aria-label="Home"
+      type="button"
+    >
+      <i class="fa-thin fa-house"></i> Home
+    </button>
+    <button
+      id="mobile-lang-toggle"
+      class="nav-item"
+      aria-label="Toggle Language"
+      type="button"
+    >
+      EN
+    </button>
+    <button
+      id="mobile-theme-toggle"
+      class="nav-item"
+      aria-label="Toggle Theme"
+      type="button"
+    >
+      Dark
+    </button>
+    <button
+      id="services-toggle"
+      class="nav-item"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="services-dropdown"
+      aria-label="Toggle Services Menu"
+      type="button"
+    >
+      <span class="hamburger-icon">&#9776;</span> Services
+    </button>
+    <button
+      id="mobile-chatbot-btn"
+      class="nav-item"
+      aria-label="Chatbot"
+      type="button"
+    >
+      <i class="fa-thin fa-comment-alt"></i> Chat
+    </button>
+
+    <div id="services-dropdown" class="services-dropdown" role="menu" aria-label="Services Menu">
+      <a href="#" role="menuitem">Business Operations</a>
+      <a href="#" role="menuitem">Contact Center</a>
+      <a href="#" role="menuitem">IT Support</a>
+      <a href="#" role="menuitem">Professionals</a>
     </div>
+  </nav>
 
-    <button id="toggleNav" class="nav-btn main sketch-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
-      <span>Menu</span>
-    </button>
-  </div>
-
-    <button id="toggleNav" class="nav-btn main sketch-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
-      <span>Menu</span>
-    </button>
-  </div>
   <div id="modal-root"></div>
+
   <footer>© 2025 OPS Online Support</footer>
+
   <script>
     // SERVICES DATA (EN/ES)
     const svc = {
@@ -1089,12 +1025,60 @@
     document.getElementById("fab-chat").onclick = openChatbot;
     document.getElementById("fab-join").onclick = openJoinModal;
     document.getElementById("fab-contact").onclick = openContactModal;
+    document.getElementById("mobile-chatbot-btn").onclick = openChatbot;
+
+    // Mobile new nav handlers
+    const servicesToggleBtn = document.getElementById("services-toggle");
+    const servicesDropdown = document.getElementById("services-dropdown");
+
+    servicesToggleBtn.addEventListener("click", () => {
+      const expanded = servicesToggleBtn.getAttribute("aria-expanded") === "true";
+      servicesToggleBtn.setAttribute("aria-expanded", !expanded);
+      servicesDropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !servicesToggleBtn.contains(e.target) &&
+        !servicesDropdown.contains(e.target)
+      ) {
+        servicesDropdown.classList.remove("active");
+        servicesToggleBtn.setAttribute("aria-expanded", false);
+      }
+    });
+
+    document
+      .getElementById("mobile-home-btn")
+      .addEventListener("click", () => {
+        alert("Navigate to Home");
+      });
+
+    document.getElementById("mobile-lang-toggle").onclick = () => {
+      lang = lang === "en" ? "es" : "en";
+      document.getElementById("mobile-lang-toggle").textContent =
+        lang === "en" ? "ES" : "EN";
+      document.getElementById("lang-toggle").textContent =
+        document.getElementById("mobile-lang-toggle").textContent;
+      renderCards();
+      document.getElementById("modal-root").innerHTML = "";
+    };
+
+    document.getElementById("mobile-theme-toggle").onclick = () => {
+      theme = theme === "light" ? "dark" : "light";
+      document.body.classList.toggle("dark", theme === "dark");
+      document.getElementById("mobile-theme-toggle").textContent =
+        theme === "light" ? "Dark" : "Light";
+      document.getElementById("theme-toggle").textContent =
+        document.getElementById("mobile-theme-toggle").textContent;
+    };
 
     // Desktop toggles sync
     document.getElementById("lang-toggle").onclick = () => {
       lang = lang === "en" ? "es" : "en";
       document.getElementById("lang-toggle").textContent =
         lang === "en" ? "ES" : "EN";
+      document.getElementById("mobile-lang-toggle").textContent =
+        document.getElementById("lang-toggle").textContent;
       renderCards();
       document.getElementById("modal-root").innerHTML = "";
     };
@@ -1104,6 +1088,8 @@
       document.body.classList.toggle("dark", theme === "dark");
       document.getElementById("theme-toggle").textContent =
         theme === "light" ? "Dark" : "Light";
+      document.getElementById("mobile-theme-toggle").textContent =
+        document.getElementById("theme-toggle").textContent;
     };
 
     // --- MODALS: JOIN/CONTACT (Basic, Draggable) ---
@@ -1268,120 +1254,6 @@
         return false;
       };
     }
-    // --- Compact Mobile Nav Logic ---
-    const mobileNav = document.getElementById('mobileNav');
-    const toggleNav = document.getElementById('toggleNav');
-    const langBtn = document.getElementById('langBtn');
-    const themeBtn = document.getElementById('themeBtn');
-    const svcBtn = document.getElementById('svcBtn');
-
-    toggleNav.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      toggleNav.classList.toggle('open');
-      toggleNav.setAttribute('aria-expanded', isOpen);
-      if (isOpen) {
-        toggleNav.querySelector('span').textContent = 'X';
-      } else {
-        toggleNav.querySelector('span').textContent = 'Menu';
-      }
-    });
-
-    svcBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // prevent menu from closing
-      const dropdown = svcBtn.parentElement;
-      dropdown.classList.toggle('open');
-      const expanded = svcBtn.getAttribute('aria-expanded') === 'true';
-      svcBtn.setAttribute('aria-expanded', !expanded);
-    });
-
-    langBtn.addEventListener('click', () => {
-      lang = lang === 'en' ? 'es' : 'en';
-      langBtn.textContent = lang === 'en' ? 'ES' : 'EN';
-      // Sync with desktop toggle
-      document.getElementById("lang-toggle").textContent = lang === 'en' ? 'ES' : 'EN';
-      renderCards();
-    });
-
-    themeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      theme = document.body.classList.contains('dark') ? 'dark' : 'light';
-      themeBtn.textContent = theme === 'dark' ? 'Light' : 'Dark';
-      // Sync with desktop toggle
-      document.getElementById("theme-toggle").textContent = theme === 'dark' ? 'Light' : 'Dark';
-    });
-
-    // Close menu when clicking a nav item that opens a modal/navigates
-    document.querySelectorAll('#mobileNav .nav-items a').forEach(el => {
-      el.addEventListener('click', () => {
-        if(mobileNav.classList.contains('open')) {
-          mobileNav.classList.remove('open');
-          toggleNav.classList.remove('open');
-          toggleNav.setAttribute('aria-expanded', false);
-          toggleNav.querySelector('span').textContent = 'Menu';
-        }
-      });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      const dropdown = svcBtn.parentElement;
-      if (dropdown.classList.contains('open') && !dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
-        svcBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Sketch button animated SVG lines
-    function createSVG(width, height, radius) {
-      const svgNS = "http://www.w3.org/2000/svg";
-      const svg = document.createElementNS(svgNS, "svg");
-      const rect = document.createElementNS(svgNS, "rect");
-
-      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-      rect.setAttribute("x", "0");
-      rect.setAttribute("y", "0");
-      rect.setAttribute("width", "100%");
-      rect.setAttribute("height", "100%");
-      rect.setAttribute("rx", radius);
-      rect.setAttribute("ry", radius);
-      rect.setAttribute("pathLength", "10");
-
-      svg.appendChild(rect);
-      return svg;
-    }
-
-    document.querySelectorAll(".sketch-button").forEach(button => {
-      const style = getComputedStyle(button);
-      const radius = parseInt(style.borderRadius, 10) || 0;
-
-      const lines = document.createElement("div");
-      lines.className = "lines";
-
-      const groupTop = document.createElement("div");
-      const groupBottom = document.createElement("div");
-
-      const svgTemplate = createSVG(button.offsetWidth, button.offsetHeight, radius);
-
-      const cloneAndAppend = (parent) => {
-        for(let i = 0; i < 4; i++) {
-          parent.appendChild(svgTemplate.cloneNode(true));
-        }
-      };
-
-      cloneAndAppend(groupTop);
-      cloneAndAppend(groupBottom);
-
-      lines.appendChild(groupTop);
-      lines.appendChild(groupBottom);
-
-      button.appendChild(lines);
-
-      button.addEventListener("pointerenter", () => button.classList.add("start"));
-      const firstSvg = lines.querySelector('svg');
-      if(firstSvg) {
-        firstSvg.addEventListener("animationend", () => button.classList.remove("start"));
-      }
-    });
   </script>
 </body>
 </html>

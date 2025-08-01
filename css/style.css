@@ -1,0 +1,654 @@
+/* Reset & base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  margin: 0; padding: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Page-specific backgrounds */
+.page-business-ops { background: linear-gradient(135deg, #3a30cc, #8e44ad); }
+.page-contact-center, .page-it-support, .page-professional-services { background: linear-gradient(135deg, #1a237e, #512da8); }
+
+/* Light Theme Styles */
+body.light {
+  color: #222;
+}
+.page-business-ops.light { background: #f0f0f5; }
+.page-contact-center.light, .page-it-support.light, .page-professional-services.light { background: #f9f9fb; }
+
+
+/* Navigation Bar */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  user-select: none;
+  flex-wrap: wrap;
+}
+nav a {
+  color: #d3d3ff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.page-business-ops nav a:hover,
+.page-business-ops nav a:focus {
+  background-color: #9b6cff;
+  color: white;
+  outline: none;
+}
+.page-contact-center nav, .page-it-support nav, .page-professional-services nav {
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.page-contact-center nav a, .page-it-support nav a, .page-professional-services nav a {
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+.page-contact-center nav a:hover, .page-contact-center nav a:focus,
+.page-it-support nav a:hover, .page-it-support nav a:focus,
+.page-professional-services nav a:hover, .page-professional-services nav a:focus {
+  background-color: #673ab7;
+  color: white;
+  outline: none;
+}
+
+body.light nav a {
+  color: #222;
+}
+body.light.page-business-ops nav a {
+    color: #222;
+}
+body.light.page-contact-center nav a, body.light.page-it-support nav a, body.light.page-professional-services nav a {
+    color: #444;
+}
+body.light.page-contact-center nav a:hover, body.light.page-contact-center nav a:focus,
+body.light.page-it-support nav a:hover, body.light.page-it-support nav a:focus,
+body.light.page-professional-services nav a:hover, body.light.page-professional-services nav a:focus {
+  background-color: #b39ddb;
+  color: #222;
+}
+
+
+/* Toggles container */
+#toggles {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+#toggles button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 8px 14px;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  user-select: none;
+}
+.page-business-ops #toggles button {
+    min-width: 110px;
+}
+.page-contact-center #toggles button, .page-it-support #toggles button, .page-professional-services #toggles button {
+    min-width: 120px;
+}
+
+.page-business-ops #toggles button:hover {
+  background-color: #8e44ad;
+  border-color: #fff;
+  color: #fff;
+}
+.page-business-ops #toggles button.active {
+  background-color: #8e44ad;
+  border-color: #fff;
+  color: #fff;
+}
+.page-contact-center #toggles, .page-it-support #toggles, .page-professional-services #toggles {
+    margin-bottom: 40px;
+}
+.page-contact-center #toggles button:hover, .page-it-support #toggles button:hover, .page-professional-services #toggles button:hover {
+  background-color: #512da8;
+  border-color: #fff;
+  color: #fff;
+}
+.page-contact-center #toggles button.active, .page-it-support #toggles button.active, .page-professional-services #toggles button.active {
+  background-color: #512da8;
+  border-color: #fff;
+  color: #fff;
+}
+
+body.light #toggles button {
+  border-color: #222;
+  color: #222;
+}
+body.light.page-business-ops #toggles button:hover {
+  background-color: #ddd;
+  color: #111;
+}
+body.light.page-contact-center #toggles button, body.light.page-it-support #toggles button, body.light.page-professional-services #toggles button {
+    border-color: #444;
+    color: #444;
+}
+body.light.page-contact-center #toggles button:hover, body.light.page-it-support #toggles button:hover, body.light.page-professional-services #toggles button:hover {
+  background-color: #b39ddb;
+  color: #222;
+  border-color: #b39ddb;
+}
+body.light.page-contact-center #toggles button.active, body.light.page-it-support #toggles button.active, body.light.page-professional-services #toggles button.active {
+  background-color: #7e57c2;
+  border-color: #7e57c2;
+  color: #222;
+}
+
+
+/* Header */
+header {
+  text-align: center;
+}
+.page-business-ops header {
+    margin-bottom: 40px;
+}
+.page-contact-center header, .page-it-support header, .page-professional-services header {
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+.page-business-ops header h1 {
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+.page-contact-center header h1, .page-it-support header h1, .page-professional-services header h1 {
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+header p {
+  opacity: 0.9;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+.page-business-ops header p {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.page-contact-center header p, .page-it-support header p, .page-professional-services header p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+
+header a.cta-button {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  user-select: none;
+}
+.page-business-ops header a.cta-button {
+  background: linear-gradient(45deg, #ff6600, #e94e1b);
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(255,102,0,0.5);
+}
+.page-business-ops header a.cta-button:hover {
+  box-shadow: 0 10px 25px rgba(255,102,0,0.8);
+}
+.page-contact-center header a.cta-button, .page-it-support header a.cta-button, .page-professional-services header a.cta-button {
+  background: linear-gradient(45deg, #ab47bc, #7e57c2);
+  padding: 16px 38px;
+  font-size: 1.15rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(171, 71, 188, 0.6);
+}
+.page-contact-center header a.cta-button:hover, .page-it-support header a.cta-button:hover, .page-professional-services header a.cta-button:hover {
+  box-shadow: 0 14px 40px rgba(171, 71, 188, 0.9);
+  background: linear-gradient(45deg, #8e24aa, #5e35b1);
+}
+
+
+body.light .page-business-ops header a.cta-button {
+  background: linear-gradient(45deg, #ff6600, #e94e1b);
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(255,102,0,0.5);
+}
+body.light .page-business-ops header a.cta-button:hover {
+  box-shadow: 0 10px 25px rgba(255,102,0,0.8);
+}
+body.light.page-contact-center header a.cta-button, body.light.page-it-support header a.cta-button, body.light.page-professional-services header a.cta-button {
+  background: linear-gradient(45deg, #9c27b0, #ba68c8);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(156, 39, 176, 0.5);
+}
+body.light.page-contact-center header a.cta-button:hover, body.light.page-it-support header a.cta-button:hover, body.light.page-professional-services header a.cta-button:hover {
+  box-shadow: 0 14px 40px rgba(156, 39, 176, 0.8);
+  background: linear-gradient(45deg, #7b1fa2, #9575cd);
+}
+
+
+/* ==== Business Operations Page Specific Styles ==== */
+.page-business-ops main {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+.page-business-ops .info-cards {
+  max-width: 500px;
+  flex: 1 1 450px;
+}
+.page-business-ops .info-cards h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.page-business-ops .info-cards p {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+  line-height: 1.5;
+  transition: opacity 0.3s;
+}
+.page-business-ops .info-cards ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.page-business-ops .info-cards ul li {
+  position: relative;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  padding-left: 30px;
+  font-weight: 600;
+}
+.page-business-ops .info-cards ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0cd864;
+  font-weight: 900;
+}
+.page-business-ops .metrics-card {
+  background: #1e1e2f;
+  border-radius: 16px;
+  padding: 24px 30px;
+  width: 380px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: background 0.3s, color 0.3s;
+}
+.page-business-ops .metrics-card.dark {
+  background: #121223;
+}
+.page-business-ops .metrics-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #b8b8f5;
+  user-select: none;
+  transition: color 0.3s;
+}
+.page-business-ops .chart {
+  width: 100%;
+  height: 130px;
+  margin-bottom: 24px;
+  background: #2c2c4a;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.page-business-ops .line {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  height: 90px;
+  background: linear-gradient(90deg, #4aa5ff 20%, #9b6cff 60%, #667aff 90%);
+  clip-path: polygon(
+    0% 60%, 10% 55%, 20% 70%, 30% 65%, 40% 75%, 50% 70%, 60% 85%, 70% 80%, 80% 90%, 90% 85%, 100% 95%, 100% 100%, 0% 100%
+  );
+  opacity: 0.75;
+  transition: background 0.3s;
+}
+.page-business-ops .metrics-values {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #b8b8f5;
+  user-select: none;
+  transition: color 0.3s;
+}
+.page-business-ops .metrics-values span {
+  user-select: text;
+}
+.page-business-ops .stats-section {
+  background: #222238;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+.page-business-ops .stats-section h4 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #ccc;
+  user-select: none;
+  transition: color 0.3s;
+}
+.page-business-ops .stat-bar {
+  height: 12px;
+  background: #444466;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+  transition: background 0.3s;
+}
+.page-business-ops .stat-bar > div {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease, background-color 0.3s;
+}
+.page-business-ops .stat-blue {
+  background: #4aa5ff;
+  width: 75%;
+}
+.page-business-ops .stat-purple {
+  background: #9b6cff;
+  width: 50%;
+}
+.page-business-ops .stat-light-blue {
+  background: #667aff;
+  width: 35%;
+}
+.page-business-ops section#form {
+  max-width: 400px;
+  margin: 0 auto 40px auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  transition: background 0.3s, color 0.3s;
+}
+.page-business-ops section#form h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+.page-business-ops section#form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.page-business-ops section#form input {
+  padding: 12px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: background 0.3s, color 0.3s;
+}
+.page-business-ops section#form button {
+  background: linear-gradient(45deg, #ff6600, #e94e1b);
+  color: white;
+  border: none;
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.page-business-ops section#form button:hover {
+  background: linear-gradient(45deg, #e94e1b, #ff6600);
+}
+body.light.page-business-ops .metrics-card {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+body.light.page-business-ops .metrics-card.dark {
+  background: #f9f9fb;
+}
+body.light.page-business-ops .chart {
+  background: #d9dbf5;
+}
+body.light.page-business-ops .metrics-values {
+  color: #555;
+}
+body.light.page-business-ops .stats-section {
+  background: #e8e9f7;
+  color: #444;
+}
+body.light.page-business-ops .stat-bar {
+  background: #c4c7e3;
+}
+body.light.page-business-ops .stat-blue {
+  background: #4a6eff;
+}
+body.light.page-business-ops .stat-purple {
+  background: #7a57e8;
+}
+body.light.page-business-ops .stat-light-blue {
+  background: #6c8dff;
+}
+body.light.page-business-ops section#form {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+body.light.page-business-ops section#form input {
+  background: #f5f5f7;
+  color: #222;
+  border: 1px solid #ccc;
+}
+body.light.page-business-ops section#form button {
+  background: linear-gradient(45deg, #ff6600, #e94e1b);
+  color: white;
+}
+
+/* ==== Contact Center, IT Support, Professional Services Page Specific Styles ==== */
+.page-contact-center section, .page-it-support section, .page-professional-services section {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+.page-contact-center section h2, .page-it-support section h2, .page-professional-services section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.page-contact-center section p, .page-it-support section p, .page-professional-services section p,
+.page-contact-center section ul, .page-it-support section ul, .page-professional-services section ul,
+.page-contact-center section blockquote, .page-it-support section blockquote, .page-professional-services section blockquote {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+.page-contact-center section ul, .page-it-support section ul, .page-professional-services section ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+.page-contact-center section ul li, .page-it-support section ul li, .page-professional-services section ul li {
+  margin-bottom: 10px;
+}
+.page-contact-center blockquote, .page-it-support blockquote, .page-professional-services blockquote {
+  font-style: italic;
+  border-left: 4px solid #7e57c2;
+  padding-left: 15px;
+  color: #ddd;
+}
+.page-contact-center blockquote strong, .page-it-support blockquote strong, .page-professional-services blockquote strong {
+  font-weight: 700;
+  display: block;
+  margin-top: 10px;
+  color: #eee;
+}
+body.light.page-contact-center blockquote, body.light.page-it-support blockquote, body.light.page-professional-services blockquote {
+  color: #555;
+  border-left-color: #ba68c8;
+}
+body.light.page-contact-center blockquote strong, body.light.page-it-support blockquote strong, body.light.page-professional-services blockquote strong {
+  color: #444;
+}
+
+.page-contact-center section#form, .page-it-support section#form, .page-professional-services section#form {
+  max-width: 480px;
+  margin: 0 auto 60px;
+  background: rgba(255 255 255 / 0.1);
+  padding: 30px 30px 40px;
+  border-radius: 14px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  transition: background 0.3s, color 0.3s;
+}
+body.light.page-contact-center section#form, body.light.page-it-support section#form, body.light.page-professional-services section#form {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.05);
+}
+.page-contact-center section#form h2, .page-it-support section#form h2, .page-professional-services section#form h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.page-contact-center section#form form, .page-it-support section#form form, .page-professional-services section#form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.page-contact-center section#form input, .page-it-support section#form input, .page-professional-services section#form input {
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  transition: background 0.3s, color 0.3s;
+}
+body.light.page-contact-center section#form input, body.light.page-it-support section#form input, body.light.page-professional-services section#form input {
+  border: 1px solid #ccc;
+  background: #f5f5f7;
+  color: #222;
+}
+.page-contact-center section#form button, .page-it-support section#form button, .page-professional-services section#form button {
+  padding: 14px 0;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: white;
+  background: #5e35b1;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  user-select: none;
+}
+.page-contact-center section#form button:hover, .page-it-support section#form button:hover, .page-professional-services section#form button:hover {
+  background: #4527a0;
+}
+body.light.page-contact-center section#form button, body.light.page-it-support section#form button, body.light.page-professional-services section#form button {
+  background: #7e57c2;
+  color: white;
+}
+body.light.page-contact-center section#form button:hover, body.light.page-it-support section#form button:hover, body.light.page-professional-services section#form button:hover {
+  background: #5e35b1;
+}
+
+/* ==== IT Support Page Specific Styles ==== */
+.page-it-support .card {
+  background: #2c2c4a;
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+  transition: background 0.3s;
+}
+body.light.page-it-support .card {
+  background: #e0e0f8;
+  color: #222;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.page-it-support .card .icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+.page-it-support .card .title {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  user-select: none;
+}
+.page-it-support .card .content {
+  font-weight: 500;
+  font-size: 1.1rem;
+  opacity: 0.85;
+  user-select: text;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+  .page-business-ops main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .page-business-ops .metrics-card {
+    width: 100%;
+    max-width: 380px;
+  }
+  .page-business-ops nav {
+    justify-content: center;
+    gap: 20px;
+  }
+  .page-business-ops #toggles {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-contact-center header h1, .page-it-support header h1, .page-professional-services header h1 {
+    font-size: 2.2rem;
+  }
+  .page-contact-center nav, .page-it-support nav, .page-professional-services nav {
+    gap: 15px;
+  }
+  .page-contact-center #toggles, .page-it-support #toggles, .page-professional-services #toggles {
+    justify-content: center;
+  }
+  .page-contact-center section, .page-it-support section, .page-professional-services section,
+  .page-contact-center section#form, .page-it-support section#form, .page-professional-services section#form {
+    padding: 0 15px;
+    max-width: 100%;
+  }
+  .page-it-support .card {
+    max-width: 100%;
+    padding: 25px 20px;
+  }
+}
