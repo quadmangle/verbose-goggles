@@ -19,6 +19,7 @@
       --clr-card-shadow: 0 2px 28px #b6b9f7a8,
         -20px 20px 40px hsl(270 42% 45% / 0.18);
       --clr-card-shadow-dark: 0 2px 24px #11142b88;
+      --squircle: 40px;
     }
     body {
       background: linear-gradient(135deg, #f2f6fa 0%, #dde3fa 100%);
@@ -395,97 +396,201 @@
       letter-spacing: 0.04em;
     }
 
-    /* New Mobile Bottom Nav */
-    .mobile-bottom-nav {
-      display: none; /* default hidden */
+    /* Mobile nav container */
+    #mobileNav {
+      display: none; /* Hidden by default */
       position: fixed;
-      bottom: 50px; /* above footer */
-      left: 0;
-      width: 100%;
-      background: var(--clr-footer);
-      color: white;
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-around;
+      bottom: 25px;
+      right: 15px;
       align-items: center;
-      padding: 0.4rem 0;
-      gap: 0.5rem;
-      z-index: 120;
-      border-radius: 14px 14px 0 0;
-      box-sizing: border-box;
+      gap: 10px;
+      z-index: 1000;
+      transition: width 0.3s ease, background-color 0.3s ease;
+      width: auto;
+      background: transparent;
     }
-
-    /* Show mobile bottom nav only on small screens */
     @media (max-width: 900px) {
-      .mobile-bottom-nav {
+      #mobileNav {
         display: flex;
       }
     }
+    #mobileNav.open {
+      width: 100%;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      padding: 5px 10px;
+      background: white;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+      justify-content: center;
+      gap: 15px;
+    }
 
-    /* Buttons in mobile nav */
-    .mobile-bottom-nav button,
-    .mobile-bottom-nav .nav-item {
-      background: none;
+    /* Nav items container */
+    .nav-items {
+      display: none;
+      gap: 10px;
+    }
+    #mobileNav.open .nav-items {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 15px;
+    }
+
+    /* Nav buttons base */
+    .nav-btn {
+      font-size: 1rem;
+      color: black;
+      background: white;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       border: none;
-      color: white;
-      cursor: pointer;
-      font-size: 0.9rem;
       display: flex;
       align-items: center;
-      gap: 0.25rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 8px;
-      transition: background-color 0.2s ease;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+    .nav-btn:focus-visible {
+      outline: 2px solid #000;
+      outline-offset: 2px;
+    }
+    .nav-btn.main {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: calc(var(--squircle) * 0.45);
+      background: white;
+      color: black;
+      box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    }
+    .nav-btn.main.open {
+      transform: rotate(135deg);
+      transition: transform 0.3s ease;
+    }
+
+    /* Dropdown */
+    .dropdown {
       position: relative;
     }
-
-    .mobile-bottom-nav button:hover,
-    .mobile-bottom-nav .nav-item:hover {
-      background: var(--clr-primary);
-    }
-
-    /* Services dropdown */
-    .services-dropdown {
+    .dropdown-menu {
       position: absolute;
-      bottom: 40px; /* positioned above nav bar */
-      background: var(--clr-footer);
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      bottom: 50px;
+      right: 0;
+      background: #f9f9f9;
+      color: #222;
+      border-radius: 6px;
+      padding: 6px 8px;
       display: none;
       flex-direction: column;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      font-weight: 400;
+      gap: 4px;
       font-size: 0.85rem;
-      min-width: 180px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 130;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      user-select: none;
     }
-
-    .services-dropdown a {
-      color: white;
+    .dropdown-menu a {
+      color: #222;
       text-decoration: none;
-      padding: 0.3rem 0.5rem;
-      border-radius: 6px;
-      display: block;
+      padding: 4px 6px;
+      white-space: nowrap;
+      transition: background-color 0.2s, color 0.2s;
     }
-
-    .services-dropdown a:hover {
-      background: var(--clr-primary);
+    .dropdown-menu a:hover {
+      background: #eee;
+      color: #000;
     }
-
-    /* Show dropdown when active */
-    .services-dropdown.active {
+    .dropdown.open .dropdown-menu {
       display: flex;
     }
 
-    /* Hamburger icon style */
-    .hamburger-icon {
-      font-size: 1.3rem;
+    /* Sketch button */
+    .sketch-button {
+      cursor: pointer;
+      appearance: none;
+      outline: none;
+      border: none;
+      font-family: inherit;
+      font-weight: 500;
+      position: relative;
+      border-radius: calc(var(--squircle) * 0.45);
+      padding: 12px 24px;
+      font-size: 16px;
+      color: #14387e;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.02),
+        0 4px 16px rgba(0,0,0,0.02),
+        0 4px 24px rgba(0,0,0,0.02);
+      background-image: linear-gradient(90deg, #fcecfe, #fbf6e7, #e6fcf5);
       user-select: none;
-      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s ease;
+    }
+    .nav-btn.main.open,
+    #mobileNav.open .sketch-button {
+      color: black;
+    }
+    .sketch-button.start svg {
+      animation: stroke 1s linear;
+    }
+
+    /* Animated stroke effect container */
+    .lines {
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: hard-light;
+      pointer-events: none;
+      z-index: 1;
+      transform: scaleX(0.92) scaleY(0.95) translateZ(0);
+    }
+    .lines > div {
+      position: absolute;
+      inset: 0;
+    }
+    .lines > div:last-child {
+      transform: rotate(180deg);
+    }
+    .lines svg {
+      display: block;
+      position: absolute;
+      inset: 0;
+      overflow: visible;
+      fill: none;
+      stroke-width: 1;
+      stroke-dasharray: 2 10;
+      stroke-dashoffset: 14;
+      opacity: 0;
+      stroke: #c9e9ff;
+      width: 100%;
+      height: 100%;
+    }
+    .lines svg:nth-child(1) { stroke: #f8fcff; }
+    .lines svg:nth-child(2) {
+      stroke-width: 6px;
+      filter: blur(20px);
+    }
+    .lines svg:nth-child(3) {
+      stroke-width: 5px;
+      filter: blur(6px);
+    }
+    .lines svg:nth-child(4) {
+      stroke-width: 10px;
+      filter: blur(56px);
+    }
+
+    @keyframes stroke {
+      30%, 55% {
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 4;
+        opacity: 0;
+      }
     }
 
     /* Responsive */
@@ -564,60 +669,29 @@
     </button>
   </div>
 
-  <!-- MOBILE BOTTOM NAV (NEW) -->
-  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
-    <button
-      id="mobile-home-btn"
-      class="nav-item"
-      title="Home"
-      aria-label="Home"
-      type="button"
-    >
-      <i class="fa-thin fa-house"></i> Home
-    </button>
-    <button
-      id="mobile-lang-toggle"
-      class="nav-item"
-      aria-label="Toggle Language"
-      type="button"
-    >
-      EN
-    </button>
-    <button
-      id="mobile-theme-toggle"
-      class="nav-item"
-      aria-label="Toggle Theme"
-      type="button"
-    >
-      Dark
-    </button>
-    <button
-      id="services-toggle"
-      class="nav-item"
-      aria-haspopup="true"
-      aria-expanded="false"
-      aria-controls="services-dropdown"
-      aria-label="Toggle Services Menu"
-      type="button"
-    >
-      <span class="hamburger-icon">&#9776;</span> Services
-    </button>
-    <button
-      id="mobile-chatbot-btn"
-      class="nav-item"
-      aria-label="Chatbot"
-      type="button"
-    >
-      <i class="fa-thin fa-comment-alt"></i> Chat
-    </button>
-
-    <div id="services-dropdown" class="services-dropdown" role="menu" aria-label="Services Menu">
-      <a href="#" role="menuitem">Business Operations</a>
-      <a href="#" role="menuitem">Contact Center</a>
-      <a href="#" role="menuitem">IT Support</a>
-      <a href="#" role="menuitem">Professionals</a>
+  <div id="mobileNav" class="mobile-nav" aria-label="Mobile navigation">
+    <div class="nav-items">
+      <a href="#" class="nav-btn" title="Home" aria-label="Home"><i class="fa fa-home"></i></a>
+      <div class="dropdown">
+        <button id="svcBtn" class="nav-btn" aria-expanded="false" aria-haspopup="true" aria-controls="svcMenu" aria-label="Toggle services menu"><i class="fa fa-bars"></i></button>
+        <div class="dropdown-menu" id="svcMenu" role="menu" aria-label="Services menu">
+          <a href="javascript:void(0)" onclick="openModal('ops')" role="menuitem">Ops</a>
+          <a href="javascript:void(0)" onclick="openModal('cc')" role="menuitem">Center</a>
+          <a href="javascript:void(0)" onclick="openModal('it')" role="menuitem">IT</a>
+          <a href="javascript:void(0)" onclick="openModal('pro')" role="menuitem">Pros</a>
+        </div>
+      </div>
+      <button id="langBtn" class="nav-btn" aria-label="Toggle language">ES</button>
+      <button id="themeBtn" class="nav-btn" aria-label="Toggle theme">Dark</button>
+      <button type="button" class="nav-btn" title="Chatbot" aria-label="Chatbot" onclick="openChatbot()"><i class="fa fa-comment"></i></button>
+      <button type="button" class="nav-btn" title="Join Us" aria-label="Join Us" onclick="openJoinModal()"><i class="fa fa-user-plus"></i></button>
+      <button type="button" class="nav-btn" title="Contact Us" aria-label="Contact Us" onclick="openContactModal()"><i class="fa fa-envelope"></i></button>
     </div>
-  </nav>
+
+    <button id="toggleNav" class="nav-btn main sketch-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+      <span>Menu</span>
+    </button>
+  </div>
 
   <div id="modal-root"></div>
 
@@ -1025,60 +1099,126 @@
     document.getElementById("fab-chat").onclick = openChatbot;
     document.getElementById("fab-join").onclick = openJoinModal;
     document.getElementById("fab-contact").onclick = openContactModal;
-    document.getElementById("mobile-chatbot-btn").onclick = openChatbot;
 
-    // Mobile new nav handlers
-    const servicesToggleBtn = document.getElementById("services-toggle");
-    const servicesDropdown = document.getElementById("services-dropdown");
+    // New mobile nav handlers
+    const mobileNav = document.getElementById('mobileNav');
+    const toggleNav = document.getElementById('toggleNav');
+    const langBtn = document.getElementById('langBtn');
+    const themeBtn = document.getElementById('themeBtn');
+    const svcBtn = document.getElementById('svcBtn');
 
-    servicesToggleBtn.addEventListener("click", () => {
-      const expanded = servicesToggleBtn.getAttribute("aria-expanded") === "true";
-      servicesToggleBtn.setAttribute("aria-expanded", !expanded);
-      servicesDropdown.classList.toggle("active");
+    toggleNav.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      toggleNav.classList.toggle('open');
+      toggleNav.setAttribute('aria-expanded', isOpen);
     });
 
-    document.addEventListener("click", (e) => {
-      if (
-        !servicesToggleBtn.contains(e.target) &&
-        !servicesDropdown.contains(e.target)
-      ) {
-        servicesDropdown.classList.remove("active");
-        servicesToggleBtn.setAttribute("aria-expanded", false);
+    svcBtn.addEventListener('click', (e) => {
+      const dropdown = svcBtn.parentElement;
+      dropdown.classList.toggle('open');
+      const expanded = svcBtn.getAttribute('aria-expanded') === 'true';
+      svcBtn.setAttribute('aria-expanded', !expanded);
+      e.stopPropagation(); // prevent body click from closing it immediately
+    });
+
+    langBtn.addEventListener('click', () => {
+      lang = lang === "en" ? "es" : "en";
+      langBtn.textContent = lang === "en" ? "ES" : "EN";
+      document.getElementById("lang-toggle").textContent = langBtn.textContent;
+      renderCards();
+      document.getElementById("modal-root").innerHTML = "";
+    });
+
+    themeBtn.addEventListener('click', () => {
+      theme = theme === "light" ? "dark" : "light";
+      document.body.classList.toggle("dark", theme === "dark");
+      themeBtn.textContent = theme === "light" ? "Dark" : "Light";
+      document.getElementById("theme-toggle").textContent = themeBtn.textContent;
+    });
+
+    // Close menu when clicking a nav item (except dropdown toggle)
+    document.querySelectorAll('#mobileNav .nav-items a, #mobileNav .nav-items button:not(#svcBtn)').forEach(el => {
+      el.addEventListener('click', () => {
+        if(mobileNav.classList.contains('open')) {
+          mobileNav.classList.remove('open');
+          toggleNav.classList.remove('open');
+          toggleNav.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      const svcDropdown = document.querySelector('.dropdown');
+      if (svcDropdown && svcDropdown.classList.contains('open') && !svcDropdown.contains(e.target)) {
+        svcDropdown.classList.remove('open');
+        svcBtn.setAttribute('aria-expanded', 'false');
       }
     });
 
-    document
-      .getElementById("mobile-home-btn")
-      .addEventListener("click", () => {
-        alert("Navigate to Home");
-      });
+    // Sketch button animated SVG lines
+    function createSVG(width, height, radius) {
+      const svgNS = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(svgNS, "svg");
+      const rect = document.createElementNS(svgNS, "rect");
 
-    document.getElementById("mobile-lang-toggle").onclick = () => {
-      lang = lang === "en" ? "es" : "en";
-      document.getElementById("mobile-lang-toggle").textContent =
-        lang === "en" ? "ES" : "EN";
-      document.getElementById("lang-toggle").textContent =
-        document.getElementById("mobile-lang-toggle").textContent;
-      renderCards();
-      document.getElementById("modal-root").innerHTML = "";
-    };
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      rect.setAttribute("x", "0");
+      rect.setAttribute("y", "0");
+      rect.setAttribute("width", "100%");
+      rect.setAttribute("height", "100%");
+      rect.setAttribute("rx", radius);
+      rect.setAttribute("ry", radius);
+      rect.setAttribute("pathLength", "10");
 
-    document.getElementById("mobile-theme-toggle").onclick = () => {
-      theme = theme === "light" ? "dark" : "light";
-      document.body.classList.toggle("dark", theme === "dark");
-      document.getElementById("mobile-theme-toggle").textContent =
-        theme === "light" ? "Dark" : "Light";
-      document.getElementById("theme-toggle").textContent =
-        document.getElementById("mobile-theme-toggle").textContent;
-    };
+      svg.appendChild(rect);
+      return svg;
+    }
+
+    document.querySelectorAll(".sketch-button").forEach(button => {
+      const style = getComputedStyle(button);
+      const radius = parseInt(style.borderRadius, 10) || 0;
+
+      const lines = document.createElement("div");
+      lines.className = "lines";
+
+      const groupTop = document.createElement("div");
+      const groupBottom = document.createElement("div");
+
+      // Ensure button has dimensions before creating SVG
+      const width = button.offsetWidth;
+      const height = button.offsetHeight;
+      if (width === 0 || height === 0) return;
+
+      const svg = createSVG(width, height, radius);
+
+      groupTop.appendChild(svg);
+      groupTop.appendChild(svg.cloneNode(true));
+      groupTop.appendChild(svg.cloneNode(true));
+      groupTop.appendChild(svg.cloneNode(true));
+
+      groupBottom.appendChild(svg.cloneNode(true));
+      groupBottom.appendChild(svg.cloneNode(true));
+      groupBottom.appendChild(svg.cloneNode(true));
+      groupBottom.appendChild(svg.cloneNode(true));
+
+      lines.appendChild(groupTop);
+      lines.appendChild(groupBottom);
+
+      button.appendChild(lines);
+
+      button.addEventListener("pointerenter", () => button.classList.add("start"));
+      svg.addEventListener("animationend", () => button.classList.remove("start"));
+    });
 
     // Desktop toggles sync
     document.getElementById("lang-toggle").onclick = () => {
       lang = lang === "en" ? "es" : "en";
-      document.getElementById("lang-toggle").textContent =
-        lang === "en" ? "ES" : "EN";
-      document.getElementById("mobile-lang-toggle").textContent =
-        document.getElementById("lang-toggle").textContent;
+      const newLangText = lang === "en" ? "ES" : "EN";
+      document.getElementById("lang-toggle").textContent = newLangText;
+      if (document.getElementById("langBtn")) {
+        document.getElementById("langBtn").textContent = newLangText;
+      }
       renderCards();
       document.getElementById("modal-root").innerHTML = "";
     };
@@ -1086,10 +1226,11 @@
     document.getElementById("theme-toggle").onclick = () => {
       theme = theme === "light" ? "dark" : "light";
       document.body.classList.toggle("dark", theme === "dark");
-      document.getElementById("theme-toggle").textContent =
-        theme === "light" ? "Dark" : "Light";
-      document.getElementById("mobile-theme-toggle").textContent =
-        document.getElementById("theme-toggle").textContent;
+      const newThemeText = theme === "light" ? "Dark" : "Light";
+      document.getElementById("theme-toggle").textContent = newThemeText;
+      if (document.getElementById("themeBtn")) {
+        document.getElementById("themeBtn").textContent = newThemeText;
+      }
     };
 
     // --- MODALS: JOIN/CONTACT (Basic, Draggable) ---
