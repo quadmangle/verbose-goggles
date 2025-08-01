@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title data-en="Business Operations Optimization | [Your Company]" data-es="Optimización de Operaciones Empresariales | [Su Empresa]">
+    Business Operations Optimization | [Your Company]
+  </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OPS Unified Portal</title>
   <link
@@ -616,57 +619,19 @@
     }
   </style>
 </head>
-<body>
-  <!-- NAV -->
-  <nav class="ops-nav" aria-label="OPS Navigation">
-    <span class="ops-logo">OPS</span>
-    <div class="nav-links">
-      <a class="nav-link" href="#">Business Operations</a>
-      <a class="nav-link" href="#">Contact Center</a>
-      <a class="nav-link" href="#">IT Support</a>
-      <a class="nav-link" href="#">Professionals</a>
-    </div>
-    <div class="toggles">
-      <button class="toggle-btn" id="lang-toggle">ES</button>
-      <button class="toggle-btn" id="theme-toggle">Dark</button>
-    </div>
+<body class="page-business-ops">
+  <!-- Navigation Menu -->
+  <nav>
+    <a href="index.html" data-en="Business Operations" data-es="Operaciones Empresariales">Business Operations</a>
+    <a href="contact-center.html" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
+    <a href="it-support.html" data-en="IT Support" data-es="Soporte IT">IT Support</a>
+    <a href="professional-services.html" data-en="Professionals" data-es="Profesionales">Professionals</a>
   </nav>
 
-  <!-- HERO SECTION -->
-  <section
-    class="hero-section"
-    role="banner"
-    aria-label="Scale your business with 24/7 expert support"
-  >
-    <h1>
-      Scale your business with<br />24/7 expert support
-    </h1>
-    <p>
-      OPS provides managed services, IT solutions, and remote professionals to
-      drive your growth.
-    </p>
-    <button class="btn-consultation" type="button">BOOK A CONSULTATION</button>
-  </section>
-
-  <!-- CARDS GRID -->
-  <div class="grid-container">
-    <div class="card" id="card-ops"></div>
-    <div class="card" id="card-cc"></div>
-    <div class="card" id="card-it"></div>
-    <div class="card" id="card-pro"></div>
-  </div>
-
-  <!-- DESKTOP FABs -->
-  <div class="fab-stack">
-    <button class="fab-btn" id="fab-join" title="Join Us">
-      <i class="fa-thin fa-user-plus"></i>
-    </button>
-    <button class="fab-btn" id="fab-contact" title="Contact Us">
-      <i class="fa-thin fa-envelope"></i>
-    </button>
-    <button class="fab-btn" id="fab-chat" title="Chatbot">
-      <i class="fa-thin fa-comment-alt"></i>
-    </button>
+  <!-- Toggles container -->
+  <div id="toggles">
+    <button id="btn-lang" aria-label="Toggle language" aria-pressed="false">EN</button>
+    <button id="btn-theme" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
   </div>
 
   <div id="mobileNav" class="mobile-nav" aria-label="Mobile navigation">
@@ -1161,7 +1126,6 @@
       const svgNS = "http://www.w3.org/2000/svg";
       const svg = document.createElementNS(svgNS, "svg");
       const rect = document.createElementNS(svgNS, "rect");
-
       svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
       rect.setAttribute("x", "0");
       rect.setAttribute("y", "0");
@@ -1170,7 +1134,6 @@
       rect.setAttribute("rx", radius);
       rect.setAttribute("ry", radius);
       rect.setAttribute("pathLength", "10");
-
       svg.appendChild(rect);
       return svg;
     }
@@ -1178,10 +1141,8 @@
     document.querySelectorAll(".sketch-button").forEach(button => {
       const style = getComputedStyle(button);
       const radius = parseInt(style.borderRadius, 10) || 0;
-
       const lines = document.createElement("div");
       lines.className = "lines";
-
       const groupTop = document.createElement("div");
       const groupBottom = document.createElement("div");
 
@@ -1189,24 +1150,18 @@
       const width = button.offsetWidth;
       const height = button.offsetHeight;
       if (width === 0 || height === 0) return;
-
       const svg = createSVG(width, height, radius);
-
       groupTop.appendChild(svg);
       groupTop.appendChild(svg.cloneNode(true));
       groupTop.appendChild(svg.cloneNode(true));
       groupTop.appendChild(svg.cloneNode(true));
-
       groupBottom.appendChild(svg.cloneNode(true));
       groupBottom.appendChild(svg.cloneNode(true));
       groupBottom.appendChild(svg.cloneNode(true));
       groupBottom.appendChild(svg.cloneNode(true));
-
       lines.appendChild(groupTop);
       lines.appendChild(groupBottom);
-
       button.appendChild(lines);
-
       button.addEventListener("pointerenter", () => button.classList.add("start"));
       svg.addEventListener("animationend", () => button.classList.remove("start"));
     });
@@ -1318,83 +1273,44 @@
           </div>
         </form>
       </div>
-      `;
-    }
-    // --- Contact Modal HTML
-    function contactModalHTML() {
-      return `
-      <div class="modal-content" tabindex="-1" role="dialog" aria-modal="true">
-        <div class="modal-header">
-          <h3>${lang === "en" ? "Contact Us" : "Contáctenos"}</h3>
-          <button class="close-modal" aria-label="Close">&times;</button>
-        </div>
-        <form id="contact-form">
-          <div class="form-row">
-            <label for="contact-name">${lang === "en" ? "Name" : "Nombre"}</label>
-            <input
-              type="text"
-              id="contact-name"
-              placeholder="${lang === "en" ? "Enter your name" : "Ingrese su nombre"}"
-              required
-            />
-            <label for="contact-email">${lang === "en" ? "Email" : "Correo Electrónico"}</label>
-            <input
-              type="email"
-              id="contact-email"
-              placeholder="${lang === "en" ? "Enter your email" : "Ingrese su correo electrónico"}"
-              required
-            />
-          </div>
-          <div class="form-row">
-            <label for="contact-comments">${lang === "en" ? "Comments" : "Comentarios"}</label>
-            <textarea
-              id="contact-comments"
-              rows="3"
-              placeholder="${lang === "en" ? "What service are you interested in?" : "¿En qué servicio está interesado?"}"
-              required
-            ></textarea>
-          </div>
-          <div class="modal-actions" style="margin-top:1.2em;">
-            <button type="button" class="submit-button cancel">${lang === "en" ? "Cancel" : "Cancelar"}</button>
-            <button
-              type="submit"
-              class="submit-button"
-              style="background:var(--clr-primary);color:#fff;"
-            >
-              ${lang === "en" ? "Send" : "Enviar"}
-            </button>
-          </div>
-        </form>
+      <div class="metrics-values" aria-label="Financial metrics">
+        <span>Revenue: <strong>$1.20M</strong></span>
+        <span>Costs: <strong>$5M</strong></span>
+        <span>Profit: <strong>$50M</strong></span>
       </div>
-      `;
-    }
-    // --- MAKE DRAGGABLE (modal, header optional) ---
-    function makeDraggable(elem, dragHandle) {
-      let isDown = false,
-        startX = 0,
-        startY = 0;
-      let header = dragHandle || elem;
-      header.style.cursor = "move";
-      header.onmousedown = function (e) {
-        isDown = true;
-        elem.classList.add("dragging");
-        startX = e.clientX - (parseInt(elem.style.left) || window.innerWidth / 2);
-        startY = e.clientY - (parseInt(elem.style.top) || window.innerHeight / 4);
-        document.onmousemove = function (e) {
-          if (!isDown) return;
-          elem.style.left = `${e.clientX - startX}px`;
-          elem.style.top = `${e.clientY - startY}px`;
-          elem.style.transform = "none";
-        };
-        document.onmouseup = function () {
-          isDown = false;
-          elem.classList.remove("dragging");
-          document.onmousemove = null;
-          document.onmouseup = null;
-        };
-        return false;
-      };
-    }
-  </script>
+
+      <div class="stats-section" aria-label="Efficiency Metrics">
+        <h4>Efficiency Metrics</h4>
+        <div>
+          <div class="stat-bar"><div class="stat-blue"></div></div>
+          <div class="stat-bar"><div class="stat-purple"></div></div>
+          <div class="stat-bar"><div class="stat-light-blue"></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Contact Form -->
+  <section id="form">
+    <h2 data-en="Book Your Free Audit" data-es="Reserve Su Auditoría Gratis">
+      Book Your Free Audit
+    </h2>
+    <form>
+      <input type="text"
+             placeholder=""
+             data-en="Your Name" data-es="Su Nombre"
+             required />
+      <input type="email"
+             placeholder=""
+             data-en="Your Email" data-es="Su Correo Electrónico"
+             required />
+      <button type="submit"
+              data-en="Schedule Now" data-es="Programar Ahora">
+        Schedule Now
+      </button>
+    </form>
+  </section>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>
