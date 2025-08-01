@@ -1,1 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OPS Unified Portal</title>
+  <link
+    rel="stylesheet"
+    href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css"
+  />
+  <style>
+    :root {
+      --clr-primary: #00c4ff;
+      --clr-accent: #ff3bdc;
+      --clr-accent-dark: #e000be;
+      --clr-glass: rgba(255, 255, 255, 0.77);
+      --clr-footer: #251541;
+      --clr-dark-bg: #13162a;
+      --clr-card-shadow: 0 2px 28px #b6b9f7a8,
+        -20px 20px 40px hsl(270 42% 45% / 0.18);
+      --clr-card-shadow-dark: 0 2px 24px #11142b88;
+    }
+    body {
+      background: linear-gradient(135deg, #f2f6fa 0%, #dde3fa 100%);
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      color: #333;
+      box-sizing: border-box;
+      padding-bottom: 75px;
+      transition: background 0.28s, color 0.2s;
+      overflow-x: hidden;
+    }
+    body.dark {
+      background: linear-gradient(135deg, #191632 0%, #1a1930 100%);
+      color: #fafbfe;
+    }
+    /* NAV */
+    .ops-nav {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      font-weight: 600;
+      background: transparent;
+    }
+    .ops-logo {
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: bold;
+      font-size: 2rem;
+      color: var(--clr-accent);
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #ffb3fd, 0 0 32px #fff0;
+      user-select: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+    }
+    .nav-link {
+      color: inherit;
+      background: none;
+      border: none;
+      font-size: 1.09rem;
+      cursor: pointer;
+      padding: 0.15em 0.3em;
+      position: relative;
+      transition: color 0.18s;
+      text-decoration: none;
+    }
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--clr-primary);
+      outline: none;
+    }
+    .toggles {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .toggle-btn {
+      background: var(--clr-primary);
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      padding: 0.36em 0.86em;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .toggle-btn:hover {
+      background: var(--clr-accent);
+    }
 
+    /* Hide main nav links on mobile/tablet, keep logo visible */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      background: #f6fbff;
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+      font-family: "Segoe UI", Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      color: #12253f;
+    }
+    .hero-section h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .hero-section p {
+      font-size: 1rem;
+      color: #3d4754;
+      margin-bottom: 1.75rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-consultation {
+      background-color: #12253f;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn-consultation:hover {
+      background-color: #0e1c30;
+    }
+
+    /* CARDS */
+    .grid-container {
+      width: min(75rem, 100%);
+      margin-inline: auto;
+      margin-top: 2.8rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      --grad: var(--clr-primary), var(--clr-accent);
+      padding: 1.7rem;
+      background: var(--clr-glass);
+      border-radius: 2rem;
+      gap: 1.1rem;
+      display: grid;
+      grid-template: "title icon" "content content" "bar bar" / 1fr auto;
+      color: #251541;
+      box-shadow: var(--clr-card-shadow);
+      backdrop-filter: blur(8px);
+      border: 1px solid #e6e7f2;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      min-height: 170px;
+      font-size: 0.93em;
+    }
+    .card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 4px 32px #ff3bdc22;
+    }
+    .card .title {
+      font-size: 1.01rem;
+      grid-area: title;
+      align-self: end;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .card .icon {
+      grid-area: icon;
+      font-size: 1.9rem;
+      align-self: end;
+      justify-self: end;
+    }
+    .card .icon > i {
+      color: transparent;
+      background: linear-gradient(100deg, var(--grad));
+      background-clip: text;
+      -webkit-background-clip: text;
+      filter: drop-shadow(0 0 2px #ffef2f55);
+    }
+    .card .content {
+      grid-area: content;
+      margin-top: 0.6rem;
+    }
+    .card::after {
+      content: "";
+      grid-area: bar;
+      height: 2px;
+      background-image: linear-gradient(90deg, var(--grad));
+      margin-top: 0.9rem;
+    }
+    body.dark .card {
+      background: rgba(32, 26, 49, 0.91);
+      color: #f3ecfe;
+      border-color: #393161;
+      box-shadow: var(--clr-card-shadow-dark);
+    }
+    body.dark .card .icon > i {
+      filter: drop-shadow(0 0 2px #00c4ff55);
+    }
+
+    /* --- MODAL BASE --- */
+    .modal-backdrop {
+      position: fixed;
+      z-index: 1999;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(44, 26, 73, 0.31);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .ops-modal,
+    .modal-content,
+    #chatbot-container {
+      min-width: 310px;
+      max-width: 490px;
+      width: 96vw;
+      margin-top: 5vh;
+      background: #fff;
+      color: #1a1930;
+      border-radius: 2rem;
+      box-shadow: 0 6px 60px #5e24bb25, 0 0 0 2px #fff1;
+      padding: 2.1rem 2.2rem 1.3rem 2.2rem;
+      position: absolute;
+      left: 50%;
+      top: 12vh;
+      transform: translate(-50%, 0);
+      transition: box-shadow 0.17s;
+      cursor: default;
+      z-index: 2222;
+    }
+    body.dark .ops-modal,
+    body.dark .modal-content,
+    body.dark #chatbot-container {
+      background: #251541;
+      color: #fafbfe;
+    }
+    .dragging {
+      opacity: 0.98;
+      cursor: move !important;
+      transition: none !important;
+    }
+    .modal-header {
+      display: flex;
+      gap: 1.3em;
+      align-items: center;
+      margin-bottom: 1em;
+    }
+    .modal-header img.modal-img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 1.2em;
+      border: 2px solid #f5e0ff;
+    }
+    .modal-title {
+      font-size: 1.16em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .modal-content-body {
+      margin-bottom: 1.1em;
+      font-size: 1.05em;
+    }
+    .modal-video {
+      background: #f7f4fb;
+      color: #ab8adc;
+      border-radius: 1em;
+      margin-bottom: 1em;
+      padding: 1em;
+      text-align: center;
+    }
+    body.dark .modal-video {
+      background: #18162a;
+      color: #ffe7fe;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 0.8em;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 1.4em;
+    }
+    .modal-btn,
+    .submit-button {
+      border: none;
+      border-radius: 1.2em;
+      background: #eae6fc;
+      color: #4d1d79;
+      padding: 0.65em 1.4em;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 0.5em;
+      transition: background 0.17s;
+    }
+    .modal-btn.cta,
+    .submit-button[style*="var(--clr-accent)"] {
+      background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+      color: #fff;
+    }
+    .modal-btn:hover,
+    .modal-btn:focus,
+    .submit-button:hover,
+    .submit-button:focus {
+      background: #f9d4fc;
+      outline: none;
+    }
+    .modal-btn.cta:hover,
+    .submit-button[style*="var(--clr-accent)"]:hover {
+      background: linear-gradient(90deg, var(--clr-accent), var(--clr-primary));
+    }
+    .modal-x,
+    .close-modal {
+      position: absolute;
+      top: 1.1em;
+      right: 1.7em;
+      font-size: 1.8rem;
+      color: var(--clr-accent);
+      border: none;
+      background: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: bold;
+      z-index: 3;
+    }
+    .modal-x:focus,
+    .close-modal:focus {
+      outline: 2px solid var(--clr-accent);
+    }
+    /* --- FABs & Mobile --- */
+    .fab-stack {
+      position: fixed;
+      bottom: 60px; /* Added 45px bottom margin to FABs as requested */
+      right: 15px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      align-items: flex-end;
+      transition: opacity 0.3s ease;
+    }
+    /* Hide FABs on mobile/tablet */
+    @media (max-width: 900px) {
+      .fab-stack {
+        display: none !important;
+      }
+    }
+
+    .fab-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      border: none;
+      box-shadow: 0 2px 12px #d1caf3bb;
+      cursor: pointer;
+      transition: background 0.19s, box-shadow 0.19s;
+      outline: none;
+    }
+    .fab-btn:hover,
+    .fab-btn:focus {
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+      box-shadow: 0 6px 28px #ff3bdc44;
+    }
+    .fab-btn span {
+      font-size: 0.94rem;
+      font-weight: 600;
+      margin-left: 0.4em;
+      pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+
+    /* New Mobile Bottom Nav */
+    .mobile-bottom-nav {
+      display: none; /* default hidden */
+      position: fixed;
+      bottom: 50px; /* above footer */
+      left: 0;
+      width: 100%;
+      background: var(--clr-footer);
+      color: white;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.4rem 0;
+      gap: 0.5rem;
+      z-index: 120;
+      border-radius: 14px 14px 0 0;
+      box-sizing: border-box;
+    }
+
+    /* Show mobile bottom nav only on small screens */
+    @media (max-width: 900px) {
+      .mobile-bottom-nav {
+        display: flex;
+      }
+    }
+
+    /* Buttons in mobile nav */
+    .mobile-bottom-nav button,
+    .mobile-bottom-nav .nav-item {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+      position: relative;
+    }
+
+    .mobile-bottom-nav button:hover,
+    .mobile-bottom-nav .nav-item:hover {
+      background: var(--clr-primary);
+    }
+
+    /* Services dropdown */
+    .services-dropdown {
+      position: absolute;
+      bottom: 40px; /* positioned above nav bar */
+      background: var(--clr-footer);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-weight: 400;
+      font-size: 0.85rem;
+      min-width: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 130;
+    }
+
+    .services-dropdown a {
+      color: white;
+      text-decoration: none;
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .services-dropdown a:hover {
+      background: var(--clr-primary);
+    }
+
+    /* Show dropdown when active */
+    .services-dropdown.active {
+      display: flex;
+    }
+
+    /* Hamburger icon style */
+    .hamburger-icon {
+      font-size: 1.3rem;
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 1.75rem;
+      }
+      .hero-section p {
+        font-size: 0.9rem;
+      }
+      .btn-consultation {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.8rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-section h1 {
+        font-size: 1.5rem;
+      }
+      .hero-section p {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="ops-nav" aria-label="OPS Navigation">
+    <span class="ops-logo">OPS</span>
+    <div class="nav-links">
+      <a class="nav-link" href="#">Business Operations</a>
+      <a class="nav-link" href="#">Contact Center</a>
+      <a class="nav-link" href="#">IT Support</a>
+      <a class="nav-link" href="#">Professionals</a>
+    </div>
+    <div class="toggles">
+      <button class="toggle-btn" id="lang-toggle">ES</button>
+      <button class="toggle-btn" id="theme-toggle">Dark</button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section
+    class="hero-section"
+    role="banner"
+    aria-label="Scale your business with 24/7 expert support"
+  >
+    <h1>
+      Scale your business with<br />24/7 expert support
+    </h1>
+    <p>
+      OPS provides managed services, IT solutions, and remote professionals to
+      drive your growth.
+    </p>
+    <button class="btn-consultation" type="button">BOOK A CONSULTATION</button>
+  </section>
+
+  <!-- CARDS GRID -->
+  <div class="grid-container">
+    <div class="card" id="card-ops"></div>
+    <div class="card" id="card-cc"></div>
+    <div class="card" id="card-it"></div>
+    <div class="card" id="card-pro"></div>
+  </div>
+
+  <!-- DESKTOP FABs -->
+  <div class="fab-stack">
+    <button class="fab-btn" id="fab-join" title="Join Us">
+      <i class="fa-thin fa-user-plus"></i>
+    </button>
+    <button class="fab-btn" id="fab-contact" title="Contact Us">
+      <i class="fa-thin fa-envelope"></i>
+    </button>
+    <button class="fab-btn" id="fab-chat" title="Chatbot">
+      <i class="fa-thin fa-comment-alt"></i>
+    </button>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV (NEW) -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <button
+      id="mobile-home-btn"
+      class="nav-item"
+      title="Home"
+      aria-label="Home"
+      type="button"
+    >
+      <i class="fa-thin fa-house"></i> Home
+    </button>
+    <button
+      id="mobile-lang-toggle"
+      class="nav-item"
+      aria-label="Toggle Language"
+      type="button"
+    >
+      EN
+    </button>
+    <button
+      id="mobile-theme-toggle"
+      class="nav-item"
+      aria-label="Toggle Theme"
+      type="button"
+    >
+      Dark
+    </button>
+    <button
+      id="services-toggle"
+      class="nav-item"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="services-dropdown"
+      aria-label="Toggle Services Menu"
+      type="button"
+    >
+      <span class="hamburger-icon">&#9776;</span> Services
+    </button>
+    <button
+      id="mobile-chatbot-btn"
+      class="nav-item"
+      aria-label="Chatbot"
+      type="button"
+    >
+      <i class="fa-thin fa-comment-alt"></i> Chat
+    </button>
+
+    <div id="services-dropdown" class="services-dropdown" role="menu" aria-label="Services Menu">
+      <a href="#" role="menuitem">Business Operations</a>
+      <a href="#" role="menuitem">Contact Center</a>
+      <a href="#" role="menuitem">IT Support</a>
+      <a href="#" role="menuitem">Professionals</a>
+    </div>
+  </nav>
+
+  <div id="modal-root"></div>
+
+  <footer>© 2025 OPS Online Support</footer>
+
+  <script>
+    // SERVICES DATA (EN/ES)
+    const svc = {
+      ops: {
+        en: {
+          title: "BUSINESS OPERATIONS",
+          icon: '<i class="fa-thin fa-briefcase"></i>',
+          desc:
+            "Streamline your processes, maximize efficiency, ensure compliance, and scale your business with precision.",
+          modal: {
+            title: "BUSINESS OPERATIONS",
+            img: "https://placehold.co/96x96?text=OPS",
+            imgAlt: "Business Operations",
+            content:
+              "Detailed content about our Business Operations services. We help optimize your processes, boost efficiency, and drive growth through strategic operational support. Key areas: process optimization, supply chain management, quality assurance.",
+            video: "Video placeholder",
+            features: [
+              "Workflow digitization & automation",
+              "Logistics & inventory efficiency",
+              "Risk & compliance frameworks (NIST, ISO, CISA)",
+              "Performance metric dashboards & analytics",
+              "Remote training & Lean operations",
+            ],
+            learn: "business-operations.html",
+          },
+        },
+        es: {
+          title: "OPERACIONES EMPRESARIALES",
+          icon: '<i class="fa-thin fa-briefcase"></i>',
+          desc:
+            "Optimice procesos, mejore la eficiencia, asegure cumplimiento y escale su empresa con precisión.",
+          modal: {
+            title: "SOBRE OPERACIONES EMPRESARIALES",
+            img: "https://placehold.co/96x96?text=OPS",
+            imgAlt: "Operaciones Empresariales",
+            content:
+              "Contenido detallado sobre nuestros servicios de Operaciones Empresariales. Ayudamos a optimizar sus procesos, mejorar la eficiencia e impulsar el crecimiento mediante el apoyo operativo estratégico. Las áreas clave incluyen la optimización de procesos, la gestión de la cadena de suministro y el aseguramiento de la calidad.",
+            video: "Video placeholder",
+            features: [
+              "Digitalización y automatización del flujo de trabajo",
+              "Estrategias de eficiencia logística e inventario",
+              "Marcos de riesgo y cumplimiento (alineados a NIST, ISO, CISA)",
+              "Cuadros de métricas de rendimiento y análisis",
+              "Capacitación remota y operaciones Lean",
+            ],
+            learn: "business-operations.html",
+          },
+        },
+      },
+      cc: {
+        en: {
+          title: "CONTACT CENTER",
+          icon: '<i class="fa-thin fa-headset"></i>',
+          desc:
+            "Enhance customer engagement with multilingual, multichannel support—24/7, data-driven, and empathetic.",
+          modal: {
+            title: "CONTACT CENTER",
+            img: "https://placehold.co/96x96?text=CC",
+            imgAlt: "Contact Center",
+            content:
+              "Explore our comprehensive Contact Center solutions to elevate customer satisfaction and engagement at every touchpoint. We offer inbound/outbound calls, multichannel support (email, chat, social), and advanced analytics.",
+            video: "Video placeholder",
+            features: [
+              "24/7 inbound/outbound call management",
+              "Multilingual chat/email support",
+              "CRM integration (e.g., HubSpot, Salesforce)",
+              "Social media engagement & sentiment tracking",
+              "Customer experience analytics & quality monitoring",
+            ],
+            learn: "contactcenter.html",
+          },
+        },
+        es: {
+          title: "CENTRO DE CONTACTO",
+          icon: '<i class="fa-thin fa-headset"></i>',
+          desc:
+            "Mejore la experiencia del cliente con soporte multicanal y multilingüe—24/7, datos y empatía.",
+          modal: {
+            title: "SOBRE EL CENTRO DE CONTACTO",
+            img: "https://placehold.co/96x96?text=CC",
+            imgAlt: "Centro de Contacto",
+            content:
+              "Explore nuestras soluciones integrales de Centro de Contacto diseñadas para mejorar la satisfacción y el compromiso del cliente en todos los puntos de contacto. Ofrecemos servicios de llamadas entrantes y salientes, soporte multicanal (correo electrónico, chat, redes sociales) y análisis avanzados.",
+            video: "Video placeholder",
+            features: [
+              "Gestión de llamadas entrantes y salientes 24/7",
+              "Soporte por chat y correo electrónico en varios idiomas",
+              "Integración con plataformas CRM (por ejemplo, HubSpot, Salesforce)",
+              "Interacción en redes sociales y seguimiento de sentimiento",
+              "Análisis de experiencia del cliente y monitoreo de calidad",
+            ],
+            learn: "contactcenter.html",
+          },
+        },
+      },
+      it: {
+        en: {
+          title: "IT SUPPORT",
+          icon: '<i class="fa-thin fa-laptop-code"></i>',
+          desc:
+            "Proactive, secure, real-time tech help, cloud management, and cyber defense for every business size.",
+          modal: {
+            title: "IT SUPPORT",
+            img: "https://placehold.co/96x96?text=IT",
+            imgAlt: "IT Support",
+            content:
+              "Our IT Support services deliver reliable, timely assistance to keep your systems running smoothly and securely: help desk, network monitoring, cybersecurity, and cloud infrastructure management.",
+            video: "Video placeholder",
+            features: [
+              "24/7 tech support & remote troubleshooting",
+              "Real-time network & system monitoring",
+              "Cybersecurity audits, patching, threat detection",
+              "Cloud infrastructure setup & maintenance",
+              "NIST, CISA, OPS Core CyberSec compliance",
+            ],
+            learn: "itsupport.html",
+          },
+        },
+        es: {
+          title: "SOPORTE IT",
+          icon: '<i class="fa-thin fa-laptop-code"></i>',
+          desc:
+            "Asistencia técnica proactiva y segura en tiempo real, gestión en la nube y ciberdefensa para cualquier tamaño de empresa.",
+          modal: {
+            title: "SOBRE SOPORTE IT",
+            img: "https://placehold.co/96x96?text=IT",
+            imgAlt: "Soporte IT",
+            content:
+              "Nuestros servicios de Soporte de TI brindan asistencia confiable y oportuna para mantener sus sistemas funcionando sin problemas y de forma segura. Los servicios incluyen soporte de mesa de ayuda, monitoreo de red, servicios de ciberseguridad y gestión de infraestructura en la nube.",
+            video: "Video placeholder",
+            features: [
+              "Soporte técnico 24/7 y solución remota de problemas",
+              "Monitoreo en tiempo real de red y sistemas",
+              "Auditorías de ciberseguridad, parches y detección de amenazas",
+              "Configuración y mantenimiento de infraestructura en la nube",
+              "Cumplimiento con NIST, CISA y políticas OPS Core CyberSec",
+            ],
+            learn: "itsupport.html",
+          },
+        },
+      },
+      pro: {
+        en: {
+          title: "PROFESSIONALS",
+          icon: '<i class="fa-thin fa-user-tie"></i>',
+          desc:
+            "OPS-vetted talent for IT, HR, projects, finance—contract or full-time, ready when you are.",
+          modal: {
+            title: "PROFESSIONALS",
+            img: "https://placehold.co/96x96?text=PRO",
+            imgAlt: "Professionals",
+            content:
+              "Access our network of highly qualified and experienced professionals for your project or long-term staffing. Experts in IT, project management, finance, HR. OPS-vetted, NDA, compliance trained.",
+            video: "Video placeholder",
+            features: [
+              "Remote IT professionals (SysAdmins, DevOps, Analysts)",
+              "Project managers & agile consultants",
+              "Finance and accounting professionals",
+              "HR and recruitment experts",
+              "OPS-vetted talent with NDA, compliance and role-specific training",
+              "Ask AI",
+            ],
+            learn: "professionals.html",
+          },
+        },
+        es: {
+          title: "PROFESIONALES",
+          icon: '<i class="fa-thin fa-user-tie"></i>',
+          desc:
+            "Talento validado por OPS para TI, RRHH, proyectos y finanzas—contrato o tiempo completo, listo para usted.",
+          modal: {
+            title: "SOBRE PROFESIONALES",
+            img: "https://placehold.co/96x96?text=PRO",
+            imgAlt: "Profesionales",
+            content:
+              "Acceda a nuestra red de profesionales altamente cualificados y experimentados para satisfacer sus necesidades específicas de proyectos o de personal a largo plazo. Proporcionamos expertos en diversos campos, incluyendo TI, gestión de proyectos, finanzas y recursos humanos, asegurando que obtenga el talento adecuado para su negocio.",
+            video: "Video placeholder",
+            features: [
+              "Profesionales IT remotos (SysAdmins, DevOps, Analistas)",
+              "Gerentes de proyecto y consultores ágiles",
+              "Profesionales de finanzas y contabilidad",
+              "Expertos en recursos humanos y reclutamiento",
+              "Talento validado por OPS con NDA, capacitación en cumplimiento y capacitación específica para el rol",
+              "Preguntar AI",
+            ],
+            learn: "professionals.html",
+          },
+        },
+      },
+    };
+    let lang = "en";
+    let theme = "light";
+    function renderCards() {
+      Object.entries({ ops: "ops", cc: "cc", it: "it", pro: "pro" }).forEach(
+        ([id, key]) => {
+          let c = svc[key][lang];
+          document.getElementById("card-" + id).innerHTML = `
+          <div class="title">${c.title}</div>
+          <div class="icon">${c.icon}</div>
+          <div class="content"><p>${c.desc}</p></div>
+        `;
+        }
+      );
+    }
+    renderCards();
+    // --- CARD MODALS (Draggable) ---
+    Object.entries({ ops: "ops", cc: "cc", it: "it", pro: "pro" }).forEach(
+      ([id, key]) => {
+        document.getElementById("card-" + id).onclick = () => openModal(key);
+        document.getElementById("card-" + id).onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " ") openModal(key);
+        };
+      }
+    );
+    function openModal(key) {
+      let data = svc[key][lang].modal;
+      let m = document.createElement("div");
+      m.className = "modal-backdrop";
+      m.innerHTML = `
+        <div class="ops-modal" tabindex="-1" role="dialog" aria-modal="true" id="draggable-modal">
+          <button class="modal-x" aria-label="CERRAR" id="modal-x">X</button>
+          <div class="modal-header">
+            <img class="modal-img" src="${data.img}" alt="${data.imgAlt}" />
+            <div><div class="modal-title">${data.title}</div></div>
+          </div>
+          <div class="modal-content-body">${data.content}</div>
+          <div class="modal-video">${data.video}</div>
+          <ul style="margin-bottom:1.2em; margin-left:1.3em;">
+            ${data.features.map((i) => `<li>${i}</li>`).join("")}
+          </ul>
+          <div class="modal-actions">
+            <a class="modal-btn" href="${data.learn}" target="_blank">${
+        lang === "en" ? "Learn More" : "Más Información"
+      }</a>
+            <button class="modal-btn" onclick="alert('Integrate with chatbot')">${
+              lang === "en" ? "Ask Chattia" : "Preguntar Chattia"
+            }</button>
+            <button class="modal-btn cta" id="modal-contact-btn">${
+              lang === "en" ? "Contact Us" : "Contáctanos"
+            }</button>
+            <button class="modal-btn" id="cancel-btn">${
+              lang === "en" ? "Cancel" : "Cancelar"
+            }</button>
+          </div>
+        </div>`;
+      let root = document.getElementById("modal-root");
+      root.innerHTML = "";
+      root.appendChild(m);
+      let modal = m.querySelector(".ops-modal");
+      // Close on X, ESC, Cancel, or outside
+      function close() {
+        root.innerHTML = "";
+      }
+      m.onclick = (e) => (e.target === m ? close() : 0);
+      modal.querySelector(".modal-x").onclick = close;
+      modal.querySelector("#cancel-btn").onclick = close;
+      document.addEventListener(
+        "keydown",
+        function esc(e) {
+          if (e.key === "Escape") {
+            close();
+            document.removeEventListener("keydown", esc);
+          }
+        },
+        { once: true }
+      );
+      modal.querySelector("#modal-contact-btn").onclick = () => {
+        openContactModal();
+        close();
+      };
+      makeDraggable(modal);
+    }
+    // --- FAB HANDLERS ---
+    function openContactModal() {
+      showModal("contact");
+    }
+    function openJoinModal() {
+      showModal("join");
+    }
+    function openChatbot() {
+      let existing = document.getElementById("chatbot-modal-backdrop");
+      if (existing) {
+        existing.remove();
+        return;
+      }
+      let c = document.createElement("div");
+      c.id = "chatbot-modal-backdrop";
+      c.innerHTML = `
+        <div id="chatbot-container" tabindex="-1" role="dialog" aria-modal="true">
+          <div id="chatbot-header">
+            <span id="title" data-en="OPS AI Chatbot" data-es="Chatbot OPS AI">${
+              lang === "en" ? "OPS AI Chatbot" : "Chatbot OPS AI"
+            }</span>
+            <span>
+              <span id="chatbot-lang" class="ctrl">${
+                lang === "en" ? "ES" : "EN"
+              }</span>
+              &nbsp;|&nbsp;
+              <span id="chatbot-theme" class="ctrl">${
+                theme === "light" ? "Dark" : "Light"
+              }</span>
+              <button id="chatbot-x" aria-label="Close">×</button>
+            </span>
+          </div>
+          <div id="chat-log" aria-live="polite"></div>
+          <div id="chatbot-form-container">
+            <form id="chatbot-input-row" autocomplete="off">
+              <input
+                id="chatbot-input"
+                type="text"
+                placeholder="${
+                  lang === "en"
+                    ? "Type your message..."
+                    : "Escriba su mensaje..."
+                }"
+                required
+                maxlength="256"
+              />
+              <button id="chatbot-send" type="submit" disabled aria-label="Send">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+            <label class="human-check">
+              <input type="checkbox" id="human-check" />
+              <span
+                id="human-label"
+                data-en="I am human"
+                data-es="Soy humano"
+                >${lang === "en" ? "I am human" : "Soy humano"}</span
+              >
+            </label>
+          </div>
+        </div>`;
+      document.body.appendChild(c);
+      // Chatbot logic: language/theme propagation
+      let botThemeBtn = c.querySelector("#chatbot-theme");
+      let botLangBtn = c.querySelector("#chatbot-lang");
+      let chatbotCont = c.querySelector("#chatbot-container");
+      c.onclick = (e) => {
+        if (e.target === c) c.remove();
+      };
+      c.querySelector("#chatbot-x").onclick = () => c.remove();
+      document.addEventListener(
+        "keydown",
+        function esc(e) {
+          if (e.key === "Escape") {
+            c.remove();
+            document.removeEventListener("keydown", esc);
+          }
+        },
+        { once: true }
+      );
+      // Theme/Language inside chatbot
+      botThemeBtn.onclick = () => {
+        document.body.classList.toggle("dark");
+        theme = document.body.classList.contains("dark") ? "dark" : "light";
+        botThemeBtn.textContent = theme === "light" ? "Dark" : "Light";
+      };
+      botLangBtn.onclick = () => {
+        lang = lang === "en" ? "es" : "en";
+        botLangBtn.textContent = lang === "en" ? "ES" : "EN";
+        c.querySelector("#title").textContent =
+          lang === "en" ? "OPS AI Chatbot" : "Chatbot OPS AI";
+        c.querySelector("#chatbot-input").placeholder =
+          lang === "en" ? "Type your message..." : "Escriba su mensaje...";
+        c.querySelector("#human-label").textContent =
+          lang === "en" ? "I am human" : "Soy humano";
+      };
+      // Chat logic (simulated; integrate backend as needed)
+      let log = c.querySelector("#chat-log");
+      let form = c.querySelector("#chatbot-input-row");
+      let input = c.querySelector("#chatbot-input");
+      let send = c.querySelector("#chatbot-send");
+      let guard = c.querySelector("#human-check");
+      guard.onchange = () => (send.disabled = !guard.checked);
+      function addMsg(txt, cls) {
+        let div = document.createElement("div");
+        div.className = "chat-msg " + cls;
+        div.textContent = txt;
+        log.appendChild(div);
+        log.scrollTop = log.scrollHeight;
+      }
+      form.onsubmit = async (e) => {
+        e.preventDefault();
+        if (!guard.checked) return;
+        let msg = input.value.trim();
+        if (!msg) return;
+        addMsg(msg, "user");
+        input.value = "";
+        send.disabled = true;
+        addMsg("…", "bot");
+        setTimeout(() => {
+          log.lastChild.textContent =
+            lang === "en" ? "Simulated reply." : "Respuesta simulada.";
+          send.disabled = false;
+        }, 800);
+      };
+      makeDraggable(chatbotCont, c.querySelector("#chatbot-header"));
+    }
+    document.getElementById("fab-chat").onclick = openChatbot;
+    document.getElementById("fab-join").onclick = openJoinModal;
+    document.getElementById("fab-contact").onclick = openContactModal;
+    document.getElementById("mobile-chatbot-btn").onclick = openChatbot;
+
+    // Mobile new nav handlers
+    const servicesToggleBtn = document.getElementById("services-toggle");
+    const servicesDropdown = document.getElementById("services-dropdown");
+
+    servicesToggleBtn.addEventListener("click", () => {
+      const expanded = servicesToggleBtn.getAttribute("aria-expanded") === "true";
+      servicesToggleBtn.setAttribute("aria-expanded", !expanded);
+      servicesDropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !servicesToggleBtn.contains(e.target) &&
+        !servicesDropdown.contains(e.target)
+      ) {
+        servicesDropdown.classList.remove("active");
+        servicesToggleBtn.setAttribute("aria-expanded", false);
+      }
+    });
+
+    document
+      .getElementById("mobile-home-btn")
+      .addEventListener("click", () => {
+        alert("Navigate to Home");
+      });
+
+    document.getElementById("mobile-lang-toggle").onclick = () => {
+      lang = lang === "en" ? "es" : "en";
+      document.getElementById("mobile-lang-toggle").textContent =
+        lang === "en" ? "ES" : "EN";
+      document.getElementById("lang-toggle").textContent =
+        document.getElementById("mobile-lang-toggle").textContent;
+      renderCards();
+      document.getElementById("modal-root").innerHTML = "";
+    };
+
+    document.getElementById("mobile-theme-toggle").onclick = () => {
+      theme = theme === "light" ? "dark" : "light";
+      document.body.classList.toggle("dark", theme === "dark");
+      document.getElementById("mobile-theme-toggle").textContent =
+        theme === "light" ? "Dark" : "Light";
+      document.getElementById("theme-toggle").textContent =
+        document.getElementById("mobile-theme-toggle").textContent;
+    };
+
+    // Desktop toggles sync
+    document.getElementById("lang-toggle").onclick = () => {
+      lang = lang === "en" ? "es" : "en";
+      document.getElementById("lang-toggle").textContent =
+        lang === "en" ? "ES" : "EN";
+      document.getElementById("mobile-lang-toggle").textContent =
+        document.getElementById("lang-toggle").textContent;
+      renderCards();
+      document.getElementById("modal-root").innerHTML = "";
+    };
+
+    document.getElementById("theme-toggle").onclick = () => {
+      theme = theme === "light" ? "dark" : "light";
+      document.body.classList.toggle("dark", theme === "dark");
+      document.getElementById("theme-toggle").textContent =
+        theme === "light" ? "Dark" : "Light";
+      document.getElementById("mobile-theme-toggle").textContent =
+        document.getElementById("theme-toggle").textContent;
+    };
+
+    // --- MODALS: JOIN/CONTACT (Basic, Draggable) ---
+    function showModal(type) {
+      let root = document.getElementById("modal-root");
+      root.innerHTML = "";
+      let m = document.createElement("div");
+      m.className = "modal-backdrop";
+      m.innerHTML = type === "contact" ? contactModalHTML() : joinModalHTML();
+      root.appendChild(m);
+      let modal = m.querySelector(".modal-content");
+      // CLOSE
+      function close() {
+        root.innerHTML = "";
+      }
+      m.onclick = (e) => (e.target === m ? close() : 0);
+      modal.querySelector(".close-modal").onclick = close;
+      let cancelBtn = modal.querySelector(".submit-button.cancel");
+      if (cancelBtn) cancelBtn.onclick = close;
+      document.addEventListener(
+        "keydown",
+        function esc(e) {
+          if (e.key === "Escape") {
+            close();
+            document.removeEventListener("keydown", esc);
+          }
+        },
+        { once: true }
+      );
+      makeDraggable(modal);
+    }
+    // --- Join Modal HTML
+    function joinModalHTML() {
+      return `
+      <div class="modal-content" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h3>${lang === "en" ? "Join Us" : "Únete a Nosotros"}</h3>
+          <button class="close-modal" aria-label="Close">&times;</button>
+        </div>
+        <form id="join-form">
+          <div class="form-row">
+            <label for="name">${lang === "en" ? "Name" : "Nombre"}</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="${lang === "en" ? "Enter your name" : "Ingresa tu nombre"}"
+              required
+            />
+            <label for="email">${lang === "en" ? "Email" : "Correo Electrónico"}</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="${lang === "en" ? "Enter your email" : "Ingresa tu correo"}"
+              required
+            />
+            <label for="phone">${lang === "en" ? "Phone" : "Teléfono"}</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="${lang === "en" ? "Enter your phone" : "Ingresa tu teléfono"}"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="comment">${lang === "en" ? "Tell us about yourself" : "Cuéntanos sobre ti"}</label>
+            <textarea
+              id="comment"
+              name="comment"
+              rows="4"
+              placeholder="${lang === "en" ? "Tell us about yourself..." : "Cuéntanos sobre ti..."}"
+            ></textarea>
+          </div>
+          <div class="modal-actions" style="margin-top:1.7em;">
+            <button type="button" class="submit-button cancel">${lang === "en" ? "Cancel" : "Cancelar"}</button>
+            <button
+              type="submit"
+              class="submit-button"
+              style="background:var(--clr-accent);color:#fff;"
+            >
+              ${lang === "en" ? "Submit" : "Enviar"}
+            </button>
+          </div>
+        </form>
+      </div>
+      `;
+    }
+    // --- Contact Modal HTML
+    function contactModalHTML() {
+      return `
+      <div class="modal-content" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h3>${lang === "en" ? "Contact Us" : "Contáctenos"}</h3>
+          <button class="close-modal" aria-label="Close">&times;</button>
+        </div>
+        <form id="contact-form">
+          <div class="form-row">
+            <label for="contact-name">${lang === "en" ? "Name" : "Nombre"}</label>
+            <input
+              type="text"
+              id="contact-name"
+              placeholder="${lang === "en" ? "Enter your name" : "Ingrese su nombre"}"
+              required
+            />
+            <label for="contact-email">${lang === "en" ? "Email" : "Correo Electrónico"}</label>
+            <input
+              type="email"
+              id="contact-email"
+              placeholder="${lang === "en" ? "Enter your email" : "Ingrese su correo electrónico"}"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="contact-comments">${lang === "en" ? "Comments" : "Comentarios"}</label>
+            <textarea
+              id="contact-comments"
+              rows="3"
+              placeholder="${lang === "en" ? "What service are you interested in?" : "¿En qué servicio está interesado?"}"
+              required
+            ></textarea>
+          </div>
+          <div class="modal-actions" style="margin-top:1.2em;">
+            <button type="button" class="submit-button cancel">${lang === "en" ? "Cancel" : "Cancelar"}</button>
+            <button
+              type="submit"
+              class="submit-button"
+              style="background:var(--clr-primary);color:#fff;"
+            >
+              ${lang === "en" ? "Send" : "Enviar"}
+            </button>
+          </div>
+        </form>
+      </div>
+      `;
+    }
+    // --- MAKE DRAGGABLE (modal, header optional) ---
+    function makeDraggable(elem, dragHandle) {
+      let isDown = false,
+        startX = 0,
+        startY = 0;
+      let header = dragHandle || elem;
+      header.style.cursor = "move";
+      header.onmousedown = function (e) {
+        isDown = true;
+        elem.classList.add("dragging");
+        startX = e.clientX - (parseInt(elem.style.left) || window.innerWidth / 2);
+        startY = e.clientY - (parseInt(elem.style.top) || window.innerHeight / 4);
+        document.onmousemove = function (e) {
+          if (!isDown) return;
+          elem.style.left = `${e.clientX - startX}px`;
+          elem.style.top = `${e.clientY - startY}px`;
+          elem.style.transform = "none";
+        };
+        document.onmouseup = function () {
+          isDown = false;
+          elem.classList.remove("dragging");
+          document.onmousemove = null;
+          document.onmouseup = null;
+        };
+        return false;
+      };
+    }
+  </script>
+</body>
+</html>
