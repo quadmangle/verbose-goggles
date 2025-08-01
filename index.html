@@ -229,8 +229,7 @@
       justify-content: center;
     }
     .ops-modal,
-    .modal-content,
-    #chatbot-container {
+    .modal-content {
       min-width: 310px;
       max-width: 490px;
       width: 96vw;
@@ -249,8 +248,7 @@
       z-index: 2222;
     }
     body.dark .ops-modal,
-    body.dark .modal-content,
-    body.dark #chatbot-container {
+    body.dark .modal-content {
       background: #251541;
       color: #fafbfe;
     }
@@ -347,6 +345,35 @@
     .close-modal:focus {
       outline: 2px solid var(--clr-accent);
     }
+    /* --- CHATBOT --- */
+    #chatbot-container{position:fixed;top:60px;left:60px;z-index:2000;
+      width:300px;height:540px;background:#251541;border:2px solid var(--clr-accent);
+      border-radius:18px;box-shadow:0 8px 32px #0006;display:flex;flex-direction:column;overflow:hidden}
+    #chatbot-header{display:flex;justify-content:space-between;align-items:center;gap:.5rem;
+      background:linear-gradient(135deg,var(--clr-primary) 0%,var(--clr-accent) 100%);
+      color:#fff;font-weight:600;font-size:1.1rem;padding:.75rem 1rem}
+    #chatbot-header .ctrl{cursor:pointer;font-size:.75rem;font-weight:500;user-select:none;opacity:.85}
+    #chatbot-header .ctrl:hover{opacity:1}
+    #chatbot-header button{background:none;border:none;color:inherit;font-size:1.2rem;cursor:pointer;padding:0 .2em}
+    #chat-log{flex:1;overflow-y:auto;padding:1rem;background:#1b0e2d;color:#eee;font-size:.94rem}
+    .chat-msg{margin:.5rem 0;max-width:90%;word-wrap:break-word}
+    .user{margin-left:auto;background:var(--clr-primary);color:#000;padding:.5rem .7rem;border-radius:14px 14px 0 14px}
+    .bot {margin-right:auto;background:#321b53;color:#fff;padding:.5rem .7rem;border-radius:14px 14px 14px 0}
+    #chatbot-form-container{background:#220f3a;border-top:1px solid var(--clr-accent);padding:.55rem .7rem}
+    #chatbot-input-row{display:flex;gap:.6rem}
+    #chatbot-input{flex:1;background:transparent;border:none;color:#fff;font-size:.95rem;padding:.55rem .6rem}
+    #chatbot-input:focus{outline:none}
+    #chatbot-send{display:flex;align-items:center;gap:6px;background:var(--clr-accent);border:none;color:#fff;
+      font-weight:600;padding:.5rem .9rem;border-radius:8px;cursor:pointer;transition:.3s}
+    #chatbot-send i{transition:transform .3s}
+    #chatbot-send:hover i{transform:rotate(-45deg)}
+    #chatbot-send:disabled{background:#555;cursor:not-allowed}
+    .human-check{color:#ddd;font-size:.85rem;display:flex;align-items:center;margin-top:.3rem}
+    .human-check input{margin-right:.4rem}
+    @media(max-width:480px){
+      #chatbot-container{height:80vh;width:95vw;top:2rem;left:2.5vw}
+    }
+
     /* --- FABs & Mobile --- */
     .fab-stack {
       position: fixed;
@@ -903,79 +930,63 @@
       showModal("join");
     }
     function openChatbot() {
-      let existing = document.getElementById("chatbot-modal-backdrop");
+      let existing = document.getElementById("chatbot-container");
       if (existing) {
         existing.remove();
         return;
       }
-      let c = document.createElement("div");
-      c.id = "chatbot-modal-backdrop";
-      c.innerHTML = `
-        <div id="chatbot-container" tabindex="-1" role="dialog" aria-modal="true">
-          <div id="chatbot-header">
-            <span id="title" data-en="OPS AI Chatbot" data-es="Chatbot OPS AI">${
-              lang === "en" ? "OPS AI Chatbot" : "Chatbot OPS AI"
+      let chatbotCont = document.createElement("div");
+      chatbotCont.id = "chatbot-container";
+      chatbotCont.setAttribute("role", "dialog");
+      chatbotCont.innerHTML = `
+        <div id="chatbot-header">
+          <span id="title" data-en="OPS AI Chatbot" data-es="Chatbot OPS AI">${
+            lang === "en" ? "OPS AI Chatbot" : "Chatbot OPS AI"
+          }</span>
+          <span>
+            <span id="chatbot-lang" class="ctrl">${
+              lang === "en" ? "ES" : "EN"
             }</span>
-            <span>
-              <span id="chatbot-lang" class="ctrl">${
-                lang === "en" ? "ES" : "EN"
-              }</span>
-              &nbsp;|&nbsp;
-              <span id="chatbot-theme" class="ctrl">${
-                theme === "light" ? "Dark" : "Light"
-              }</span>
-              <button id="chatbot-x" aria-label="Close">×</button>
-            </span>
-          </div>
-          <div id="chat-log" aria-live="polite"></div>
-          <div id="chatbot-form-container">
-            <form id="chatbot-input-row" autocomplete="off">
-              <input
-                id="chatbot-input"
-                type="text"
-                placeholder="${
-                  lang === "en"
-                    ? "Type your message..."
-                    : "Escriba su mensaje..."
-                }"
-                required
-                maxlength="256"
-              />
-              <button id="chatbot-send" type="submit" disabled aria-label="Send">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </form>
-            <label class="human-check">
-              <input type="checkbox" id="human-check" />
-              <span
-                id="human-label"
-                data-en="I am human"
-                data-es="Soy humano"
-                >${lang === "en" ? "I am human" : "Soy humano"}</span
-              >
-            </label>
-          </div>
+            &nbsp;|&nbsp;
+            <span id="chatbot-theme" class="ctrl">${
+              theme === "light" ? "Dark" : "Light"
+            }</span>
+            <button id="chatbot-x" aria-label="Close">×</button>
+          </span>
+        </div>
+        <div id="chat-log" aria-live="polite"></div>
+        <div id="chatbot-form-container">
+          <form id="chatbot-input-row" autocomplete="off">
+            <input id="chatbot-input" type="text" placeholder="${
+              lang === "en"
+                ? "Type your message..."
+                : "Escriba su mensaje..."
+            }" required maxlength="256">
+            <button id="chatbot-send" type="submit" disabled aria-label="Send">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <label class="human-check">
+            <input type="checkbox" id="human-check">
+            <span id="human-label" data-en="I am human" data-es="Soy humano">${
+              lang === "en" ? "I am human" : "Soy humano"
+            }</span>
+          </label>
         </div>`;
-      document.body.appendChild(c);
-      // Chatbot logic: language/theme propagation
-      let botThemeBtn = c.querySelector("#chatbot-theme");
-      let botLangBtn = c.querySelector("#chatbot-lang");
-      let chatbotCont = c.querySelector("#chatbot-container");
-      c.onclick = (e) => {
-        if (e.target === c) c.remove();
+      document.body.appendChild(chatbotCont);
+
+      const escKeyHandler = (e) => {
+        if (e.key === "Escape") closeChatbot();
       };
-      c.querySelector("#chatbot-x").onclick = () => c.remove();
-      document.addEventListener(
-        "keydown",
-        function esc(e) {
-          if (e.key === "Escape") {
-            c.remove();
-            document.removeEventListener("keydown", esc);
-          }
-        },
-        { once: true }
-      );
-      // Theme/Language inside chatbot
+      const closeChatbot = () => {
+        chatbotCont.remove();
+        document.removeEventListener("keydown", escKeyHandler);
+      };
+      chatbotCont.querySelector("#chatbot-x").onclick = closeChatbot;
+      document.addEventListener("keydown", escKeyHandler);
+
+      let botThemeBtn = chatbotCont.querySelector("#chatbot-theme");
+      let botLangBtn = chatbotCont.querySelector("#chatbot-lang");
       botThemeBtn.onclick = () => {
         document.body.classList.toggle("dark");
         theme = document.body.classList.contains("dark") ? "dark" : "light";
@@ -984,19 +995,19 @@
       botLangBtn.onclick = () => {
         lang = lang === "en" ? "es" : "en";
         botLangBtn.textContent = lang === "en" ? "ES" : "EN";
-        c.querySelector("#title").textContent =
+        chatbotCont.querySelector("#title").textContent =
           lang === "en" ? "OPS AI Chatbot" : "Chatbot OPS AI";
-        c.querySelector("#chatbot-input").placeholder =
+        chatbotCont.querySelector("#chatbot-input").placeholder =
           lang === "en" ? "Type your message..." : "Escriba su mensaje...";
-        c.querySelector("#human-label").textContent =
+        chatbotCont.querySelector("#human-label").textContent =
           lang === "en" ? "I am human" : "Soy humano";
       };
-      // Chat logic (simulated; integrate backend as needed)
-      let log = c.querySelector("#chat-log");
-      let form = c.querySelector("#chatbot-input-row");
-      let input = c.querySelector("#chatbot-input");
-      let send = c.querySelector("#chatbot-send");
-      let guard = c.querySelector("#human-check");
+
+      let log = chatbotCont.querySelector("#chat-log");
+      let form = chatbotCont.querySelector("#chatbot-input-row");
+      let input = chatbotCont.querySelector("#chatbot-input");
+      let send = chatbotCont.querySelector("#chatbot-send");
+      let guard = chatbotCont.querySelector("#human-check");
       guard.onchange = () => (send.disabled = !guard.checked);
       function addMsg(txt, cls) {
         let div = document.createElement("div");
@@ -1020,7 +1031,7 @@
           send.disabled = false;
         }, 800);
       };
-      makeDraggable(chatbotCont, c.querySelector("#chatbot-header"));
+      makeDraggable(chatbotCont, chatbotCont.querySelector("#chatbot-header"));
     }
     document.getElementById("fab-chat").onclick = openChatbot;
     document.getElementById("fab-join").onclick = openJoinModal;
@@ -1229,30 +1240,38 @@
     }
     // --- MAKE DRAGGABLE (modal, header optional) ---
     function makeDraggable(elem, dragHandle) {
-      let isDown = false,
-        startX = 0,
-        startY = 0;
       let header = dragHandle || elem;
       header.style.cursor = "move";
-      header.onmousedown = function (e) {
-        isDown = true;
-        elem.classList.add("dragging");
-        startX = e.clientX - (parseInt(elem.style.left) || window.innerWidth / 2);
-        startY = e.clientY - (parseInt(elem.style.top) || window.innerHeight / 4);
-        document.onmousemove = function (e) {
-          if (!isDown) return;
-          elem.style.left = `${e.clientX - startX}px`;
-          elem.style.top = `${e.clientY - startY}px`;
-          elem.style.transform = "none";
+      header.onpointerdown = (e) => {
+        e.preventDefault();
+        const shiftX = e.clientX - elem.getBoundingClientRect().left;
+        const shiftY = e.clientY - elem.getBoundingClientRect().top;
+        elem.setPointerCapture(e.pointerId);
+
+        const moveAt = (pageX, pageY) => {
+          let newX = pageX - shiftX;
+          let newY = pageY - shiftY;
+          const maxX = window.innerWidth - elem.offsetWidth;
+          const maxY = window.innerHeight - elem.offsetHeight;
+          newX = Math.max(0, Math.min(newX, maxX));
+          newY = Math.max(0, Math.min(newY, maxY));
+          elem.style.left = newX + "px";
+          elem.style.top = newY + "px";
         };
-        document.onmouseup = function () {
-          isDown = false;
-          elem.classList.remove("dragging");
-          document.onmousemove = null;
-          document.onmouseup = null;
+
+        moveAt(e.pageX, e.pageY);
+
+        const onPointerMove = (e) => {
+          moveAt(e.pageX, e.pageY);
         };
-        return false;
+
+        elem.addEventListener("pointermove", onPointerMove);
+        elem.onpointerup = () => {
+          elem.removeEventListener("pointermove", onPointerMove);
+          elem.onpointerup = null;
+        };
       };
+      header.ondragstart = () => false;
     }
   </script>
 </body>
