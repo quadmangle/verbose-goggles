@@ -29,8 +29,92 @@
         <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
     </div>
   </nav>
-  <div id="page-content"></div>
+  <div id="page-content">  <!-- Header -->
+  <header>
+    <h1 data-en="Streamline Your Business Operations" data-es="Optimice Sus Operaciones Empresariales">
+      Streamline Your Business Operations
+    </h1>
+    <p data-en="We increase the efficiency, compliance, and precision of your operational workflows."
+       data-es="Aumentamos la eficiencia, el cumplimiento y la precisión de sus flujos de trabajo operativos.">
+      We increase the efficiency, compliance, and precision of your operational workflows.
+    </p>
+    <a href="#form" class="cta-button" data-en="Get Started" data-es="Comenzar">
+      Get Started
+    </a>
+  </header>
+
+  <main>
+    <!-- Left Info Card -->
+    <div class="info-cards">
+      <h2 data-en="Optimize Your Business Operations" data-es="Optimice Sus Operaciones Empresariales">
+        Optimize Your Business Operations
+      </h2>
+      <p data-en="Streamlined processes, performance boosts, and scalable growth—delivered with expertise."
+         data-es="Procesos optimizados, mejoras de rendimiento y crecimiento escalable, entregados con experiencia.">
+        Streamlined processes, performance boosts, and scalable growth—delivered with expertise.
+      </p>
+      <ul>
+        <li data-en="Standardize workflows for operational excellence" data-es="Estandarice flujos de trabajo para la excelencia operativa">
+          Standardize workflows for operational excellence
+        </li>
+        <li data-en="Identify & eliminate process inefficiencies" data-es="Identifique y elimine ineficiencias de procesos">
+          Identify & eliminate process inefficiencies
+        </li>
+        <li data-en="Ensure regulatory compliance across your org" data-es="Asegure el cumplimiento normativo en su organización">
+          Ensure regulatory compliance across your org
+        </li>
+        <li data-en="Scale your business efficiently & securely" data-es="Escale su negocio de manera eficiente y segura">
+          Scale your business efficiently & securely
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Metrics Card -->
+    <div class="metrics-card" aria-label="Operations Metrics">
+      <h3>Operations</h3>
+      <div class="chart" aria-hidden="true">
+        <div class="line"></div>
+      </div>
+      <div class="metrics-values" aria-label="Financial metrics">
+        <span>Revenue: <strong>$1.20M</strong></span>
+        <span>Costs: <strong>$5M</strong></span>
+        <span>Profit: <strong>$50M</strong></span>
+      </div>
+
+      <div class="stats-section" aria-label="Efficiency Metrics">
+        <h4>Efficiency Metrics</h4>
+        <div>
+          <div class="stat-bar"><div class="stat-blue"></div></div>
+          <div class="stat-bar"><div class="stat-purple"></div></div>
+          <div class="stat-bar"><div class="stat-light-blue"></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Contact Form -->
+  <section id="form">
+    <h2 data-en="Book Your Free Audit" data-es="Reserve Su Auditoría Gratis">
+      Book Your Free Audit
+    </h2>
+    <form>
+      <input type="text"
+             placeholder=""
+             data-en="Your Name" data-es="Su Nombre"
+             required />
+      <input type="email"
+             placeholder=""
+             data-en="Your Email" data-es="Su Correo Electrónico"
+             required />
+      <button type="submit"
+              data-en="Schedule Now" data-es="Programar Ahora">
+        Schedule Now
+      </button>
+    </form>
+  </section>
+
+  <div id="modal-root"></div></div>
   <div id="fabs-and-mobile-nav-container"></div>
-  </script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
