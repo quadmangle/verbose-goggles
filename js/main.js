@@ -10,9 +10,13 @@ function applyTheme() {
   const themeToggleButtons = document.querySelectorAll(
     "#theme-toggle, #mobile-theme-toggle, #chatbot-theme, #contact-theme-toggle"
   );
-  themeToggleButtons.forEach(
-    (btn) => (btn.textContent = theme === "light" ? "Dark" : "Light")
-  );
+  themeToggleButtons.forEach((btn) => {
+    if (lang === "es") {
+      btn.textContent = theme === "light" ? "Oscuro" : "Claro";
+    } else {
+      btn.textContent = theme === "light" ? "Dark" : "Light";
+    }
+  });
   localStorage.setItem("theme", theme);
 }
 
