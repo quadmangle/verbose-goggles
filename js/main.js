@@ -73,8 +73,6 @@ function toggleLanguage() {
 
 document.addEventListener("DOMContentLoaded", () => {
   applyTheme();
-  applyLanguage();
-  initializeEventListeners();
 });
 
 // =================================================================================
@@ -105,16 +103,16 @@ const svc = {
       },
     },
     es: {
-      title: "OPERACIONES EMPRESARIALES",
+      title: "Gestion",
       icon: '<i class="fa-thin fa-briefcase"></i>',
       desc:
         "Optimice procesos, mejore la eficiencia, asegure cumplimiento y escale su empresa con precisión.",
       modal: {
-        title: "SOBRE OPERACIONES EMPRESARIALES",
+        title: "SOBRE GESTION",
         img: "https://placehold.co/96x96?text=OPS",
-        imgAlt: "Operaciones Empresariales",
+        imgAlt: "Gestion",
         content:
-          "Contenido detallado sobre nuestros servicios de Operaciones Empresariales. Ayudamos a optimizar sus procesos, mejorar la eficiencia e impulsar el crecimiento mediante el apoyo operativo estratégico. Las áreas clave incluyen la optimización de procesos, la gestión de la cadena de suministro y el aseguramiento de la calidad.",
+          "Contenido detallado sobre nuestros servicios de Gestion. Ayudamos a optimizar sus procesos, mejorar la eficiencia e impulsar el crecimiento mediante el apoyo operativo estratégico. Las áreas clave incluyen la optimización de procesos, la gestión de la cadena de suministro y el aseguramiento de la calidad.",
         video: "Video placeholder",
         features: [
           "Digitalización y automatización del flujo de trabajo",
@@ -672,40 +670,7 @@ function initializeEventListeners() {
     }
   );
 
-  // FABs
-  document.getElementById("fab-chat").onclick = openChatbot;
-  document.getElementById("fab-join").onclick = openJoinModal;
-  document.getElementById("fab-contact").onclick = openContactModal;
-
-  // Mobile Nav
-  document.getElementById("mobile-chatbot-btn").onclick = openChatbot;
-  const servicesToggleBtn = document.getElementById("services-toggle");
-  const servicesDropdown = document.getElementById("services-dropdown");
-
-  servicesToggleBtn.addEventListener("click", () => {
-    const expanded =
-      servicesToggleBtn.getAttribute("aria-expanded") === "true";
-    servicesToggleBtn.setAttribute("aria-expanded", !expanded);
-    servicesDropdown.classList.toggle("active");
-  });
-
-  document.addEventListener("click", (e) => {
-    if (
-      !servicesToggleBtn.contains(e.target) &&
-      !servicesDropdown.contains(e.target)
-    ) {
-      servicesDropdown.classList.remove("active");
-      servicesToggleBtn.setAttribute("aria-expanded", false);
-    }
-  });
-
-  document
-    .getElementById("mobile-home-btn")
-    .addEventListener("click", () => alert("Navigate to Home"));
-
   // Language and Theme Toggles
-  document.getElementById("mobile-lang-toggle").onclick = toggleLanguage;
-  document.getElementById("mobile-theme-toggle").onclick = toggleTheme;
   document.getElementById("lang-toggle").onclick = toggleLanguage;
   document.getElementById("theme-toggle").onclick = toggleTheme;
 }
