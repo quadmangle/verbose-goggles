@@ -54,6 +54,12 @@ function applyLanguage() {
       }
     });
 
+    document.querySelectorAll('[data-en-aria-label]').forEach(el => {
+        const text = el.getAttribute('data-' + lang + '-aria-label');
+        if (!text) return;
+        el.setAttribute('aria-label', text);
+    });
+
   renderCards();
   const modalRoot = document.getElementById("modal-root");
   if (modalRoot) {
