@@ -28,13 +28,14 @@ body.dark {
 .ops-nav {
   width: 100%;
   max-width: 1240px;
-  margin: 0 auto;
+  margin: 20px auto 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1.2rem 2rem;
   font-weight: 600;
   background: transparent;
+  position: relative;
 }
 .ops-logo {
   font-family: "Segoe UI", Arial, sans-serif;
@@ -44,6 +45,8 @@ body.dark {
   letter-spacing: 2px;
   text-shadow: 0 0 8px #ffb3fd, 0 0 32px #fff0;
   user-select: none;
+  position: absolute;
+  left: 2rem;
 }
 .nav-links {
   display: flex;
@@ -68,6 +71,9 @@ body.dark {
 .toggles {
   display: flex;
   gap: 0.5rem;
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
 }
 .toggle-btn {
   background: var(--clr-primary);
@@ -378,137 +384,6 @@ body.light {
 }
 .page-business-ops.light { background: #f0f0f5; }
 .page-contact-center.light, .page-it-support.light, .page-professional-services.light { background: #f9f9fb; }
-
-
-/* Navigation Bar */
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-bottom: 25px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  user-select: none;
-  flex-wrap: wrap;
-}
-nav a {
-  color: #d3d3ff;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background-color 0.3s, color 0.3s;
-}
-.page-business-ops nav a:hover,
-.page-business-ops nav a:focus {
-  background-color: #9b6cff;
-  color: white;
-  outline: none;
-}
-.page-contact-center nav, .page-it-support nav, .page-professional-services nav {
-    font-weight: 700;
-    margin-bottom: 30px;
-}
-.page-contact-center nav a, .page-it-support nav a, .page-professional-services nav a {
-    padding: 8px 16px;
-    border-radius: 8px;
-}
-.page-contact-center nav a:hover, .page-contact-center nav a:focus,
-.page-it-support nav a:hover, .page-it-support nav a:focus,
-.page-professional-services nav a:hover, .page-professional-services nav a:focus {
-  background-color: #673ab7;
-  color: white;
-  outline: none;
-}
-
-body.light nav a {
-  color: #222;
-}
-body.light.page-business-ops nav a {
-    color: #222;
-}
-body.light.page-contact-center nav a, body.light.page-it-support nav a, body.light.page-professional-services nav a {
-    color: #444;
-}
-body.light.page-contact-center nav a:hover, body.light.page-contact-center nav a:focus,
-body.light.page-it-support nav a:hover, body.light.page-it-support nav a:focus,
-body.light.page-professional-services nav a:hover, body.light.page-professional-services nav a:focus {
-  background-color: #b39ddb;
-  color: #222;
-}
-
-
-/* Toggles container */
-#toggles {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-#toggles button {
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 8px 14px;
-  font-weight: 600;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  user-select: none;
-}
-.page-business-ops #toggles button {
-    min-width: 110px;
-}
-.page-contact-center #toggles button, .page-it-support #toggles button, .page-professional-services #toggles button {
-    min-width: 120px;
-}
-
-.page-business-ops #toggles button:hover {
-  background-color: #8e44ad;
-  border-color: #fff;
-  color: #fff;
-}
-.page-business-ops #toggles button.active {
-  background-color: #8e44ad;
-  border-color: #fff;
-  color: #fff;
-}
-.page-contact-center #toggles, .page-it-support #toggles, .page-professional-services #toggles {
-    margin-bottom: 40px;
-}
-.page-contact-center #toggles button:hover, .page-it-support #toggles button:hover, .page-professional-services #toggles button:hover {
-  background-color: #512da8;
-  border-color: #fff;
-  color: #fff;
-}
-.page-contact-center #toggles button.active, .page-it-support #toggles button.active, .page-professional-services #toggles button.active {
-  background-color: #512da8;
-  border-color: #fff;
-  color: #fff;
-}
-
-body.light #toggles button {
-  border-color: #222;
-  color: #222;
-}
-body.light.page-business-ops #toggles button:hover {
-  background-color: #ddd;
-  color: #111;
-}
-body.light.page-contact-center #toggles button, body.light.page-it-support #toggles button, body.light.page-professional-services #toggles button {
-    border-color: #444;
-    color: #444;
-}
-body.light.page-contact-center #toggles button:hover, body.light.page-it-support #toggles button:hover, body.light.page-professional-services #toggles button:hover {
-  background-color: #b39ddb;
-  color: #222;
-  border-color: #b39ddb;
-}
-body.light.page-contact-center #toggles button.active, body.light.page-it-support #toggles button.active, body.light.page-professional-services #toggles button.active {
-  background-color: #7e57c2;
-  border-color: #7e57c2;
-  color: #222;
-}
 
 
 /* Header */
