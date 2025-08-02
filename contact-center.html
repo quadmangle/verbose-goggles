@@ -7,6 +7,7 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fabs-and-mobile-nav.css">
 </head>
 <body class="page-contact-center">
   <!-- Navigation Menu -->
@@ -19,11 +20,10 @@
     </div>
     <!-- Toggles container -->
     <div id="toggles" class="toggles">
-        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false">EN</button>
-        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
+        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false" data-en="EN" data-es="ES">EN</button>
+        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false" data-en="Dark" data-es="Oscuro">Dark</button>
     </div>
   </nav>
-
   <!-- Header -->
   <header>
     <h1 data-en="Need a Smarter, Scalable Contact Center?" data-es="¿Necesita un Centro de Contacto Más Inteligente y Escalable?">
@@ -112,35 +112,39 @@
   <!-- Contact Form -->
   <section id="form">
     <h2 data-en="See What We Can Do for You" data-es="Vea Lo Que Podemos Hacer por Usted">See What We Can Do for You</h2>
-    <form>
+        <form>
+      <input type="text"
+             placeholder=""
+             data-en="Full Name"
+             data-es="Nombre Completo"
+             required />
+      <input type="email"
+             placeholder=""
+             data-en="Business Email"
+             data-es="Correo Electrónico Empresarial"
+             required />
+      <input type="phone number"
+             placeholder=""
+             data-en="Your Phone Number" data-es="Su Numero de Telefono"
+             required />
       <input
-        type="text"
-        placeholder=""
-        data-en="Full Name"
-        data-es="Nombre Completo"
-        required
-      />
-      <input
-        type="email"
-        placeholder=""
-        data-en="Business Email"
-        data-es="Correo Electrónico Empresarial"
-        required
-      />
-      <input
-        type="text"
-        placeholder=""
-        data-en="Company"
-        data-es="Empresa"
-        required
-      />
-      <button type="submit" data-en="Request Quote" data-es="Solicitar Cotización">
-        Request Quote
-      </button>
-    </form>
+             type="text"
+             placeholder=""
+             data-en="Company"
+             data-es="Empresa"
+             required />   
+      <button type="submit"
+              data-en="Schedule Now" data-es="Solicite Una Cita">
+        Schedule Now
+      </button>  
   </section>
+<<<<<<< HEAD
   <div id="modal-root"></div>
   <script src="js/langtheme.js" defer></script>
+=======
+  <div id="modal-root"></div></div>
+  <div id="fabs-and-mobile-nav-container"></div>
+>>>>>>> main
   <script src="js/main.js" defer></script>
 </body>
 </html>

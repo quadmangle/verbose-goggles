@@ -19,8 +19,8 @@
     </div>
     <!-- Toggles container -->
     <div id="toggles" class="toggles">
-        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false">EN</button>
-        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
+        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false" data-en="EN" data-es="ES">EN</button>
+        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false" data-en="Dark" data-es="Oscuro">Dark</button>
     </div>
   </nav>
   <!-- Header -->
@@ -89,18 +89,26 @@
       Book Your Free Audit
     </h2>
     <form>
-      <input type="text"
+     <input type="text"
              placeholder=""
-             data-en="Your Name" data-es="Su Nombre"
+             data-en="Full Name"
+             data-es="Nombre Completo"
              required />
       <input type="email"
              placeholder=""
-             data-en="Your Email" data-es="Su Correo Electrónico"
+             data-en="Business Email"
+             data-es="Correo Electrónico Empresarial"
              required />
-           <input type="phone number"
+      <input type="phone number"
              placeholder=""
              data-en="Your Phone Number" data-es="Su Numero de Telefono"
              required />
+      <input
+             type="text"
+             placeholder=""
+             data-en="Company"
+             data-es="Empresa"
+             required />   
       <button type="submit"
               data-en="Schedule Now" data-es="Programar Ahora">
         Schedule Now

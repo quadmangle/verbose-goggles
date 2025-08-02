@@ -7,6 +7,7 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/fabs-and-mobile-nav.css">
 </head>
 <body class="page-it-support">
   <!-- Navigation Menu -->
@@ -19,10 +20,9 @@
     </div>
     <!-- Toggles container -->
     <div id="toggles" class="toggles">
-        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false">EN</button>
-        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
+        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false" data-en="EN" data-es="ES">EN</button>
+        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false" data-en="Dark" data-es="Oscuro">Dark</button>
     </div>
-  </nav>
 
   <!-- Card -->
   <div class="card" tabindex="0" aria-label="IT Support overview">
@@ -70,14 +70,36 @@
   <section id="form">
     <h2 data-en="Request Your Free IT Readiness Check" data-es="Solicite Su Revisión Gratuita de Preparación TI">Request Your Free IT Readiness Check</h2>
     <form>
-      <input type="text" placeholder="" data-en="Your Name" data-es="Su Nombre" required />
-      <input type="email" placeholder="" data-en="Work Email" data-es="Correo Electrónico Laboral" required />
-      <input type="text" placeholder="" data-en="Company Size" data-es="Tamaño de la Empresa" required />
+<input type="text"
+             placeholder=""
+             data-en="Full Name"
+             data-es="Nombre Completo"
+             required />
+      <input type="email"
+             placeholder=""
+             data-en="Business Email"
+             data-es="Correo Electrónico Empresarial"
+             required />
+      <input type="phone number"
+             placeholder=""
+             data-en="Your Phone Number" data-es="Su Numero de Telefono"
+             required />
+      <input
+             type="text"
+             placeholder=""
+             data-en="Company"
+             data-es="Empresa"
+             required />
       <button type="submit" data-en="Request Now" data-es="Solicitar Ahora">Request Now</button>
     </form>
   </section>
+<<<<<<< HEAD
   <div id="modal-root"></div>
   <script src="js/langtheme.js" defer></script>
+=======
+  <div id="modal-root"></div></div>
+  <div id="fabs-and-mobile-nav-container"></div>
+>>>>>>> main
   <script src="js/main.js" defer></script>
 </body>
 </html>
