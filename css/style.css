@@ -23,7 +23,9 @@ body {
   overflow-x: hidden;
 }
 body.dark {
+  background: #121212;
   color: #fafbfe;
+  animation: none;
 }
 /* NAV */
 .ops-nav {
