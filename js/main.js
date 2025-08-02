@@ -73,6 +73,8 @@ function toggleLanguage() {
 
 document.addEventListener("DOMContentLoaded", () => {
   applyTheme();
+  applyLanguage();
+  initializeEventListeners();
 });
 
 // =================================================================================
