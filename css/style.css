@@ -10,18 +10,19 @@
   --clr-card-shadow-dark: 0 2px 24px #11142b88;
 }
 body {
-  background: linear-gradient(135deg, #f2f6fa 0%, #dde3fa 100%);
+  background: linear-gradient(135deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: animated-gradient 15s ease infinite;
   min-height: 100vh;
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
   color: #333;
   box-sizing: border-box;
   padding-bottom: 75px;
-  transition: background 0.28s, color 0.2s;
+  transition: color 0.2s;
   overflow-x: hidden;
 }
 body.dark {
-  background: linear-gradient(135deg, #191632 0%, #1a1930 100%);
   color: #fafbfe;
 }
 /* NAV */
@@ -367,23 +368,21 @@ body.dark .modal-video {
 /* Reset & base */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
-  margin: 0; padding: 20px;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background 0.3s, color 0.3s;
 }
 
 /* Page-specific backgrounds */
-.page-business-ops { background: linear-gradient(135deg, #3a30cc, #8e44ad); }
-.page-contact-center, .page-it-support, .page-professional-services { background: linear-gradient(135deg, #1a237e, #512da8); }
+.page-business-ops { }
+.page-contact-center, .page-it-support, .page-professional-services { }
 
 /* Light Theme Styles */
 body.light {
   color: #222;
 }
-.page-business-ops.light { background: #f0f0f5; }
-.page-contact-center.light, .page-it-support.light, .page-professional-services.light { background: #f9f9fb; }
+.page-business-ops.light { }
+.page-contact-center.light, .page-it-support.light, .page-professional-services.light { }
 
 
 /* Header */
@@ -885,5 +884,17 @@ body.light.page-it-support .card {
   .page-it-support .card {
     max-width: 100%;
     padding: 25px 20px;
+  }
+}
+
+@keyframes animated-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
