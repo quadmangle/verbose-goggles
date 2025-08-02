@@ -29,40 +29,8 @@
         <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
     </div>
   </nav>
-
   <div id="page-content"></div>
   <div id="fabs-and-mobile-nav-container"></div>
-
-
-  <div id="modal-root"></div>
-
-  <script src="js/main.js" defer></script>
-  <script src="js/fabs-and-mobile-nav.js" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("business-operations.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("page-content").innerHTML = data;
-          // After loading content, we need to re-initialize event listeners for that content
-          if (typeof initializeEventListeners === "function") {
-            initializeEventListeners();
-          }
-          if (typeof applyLanguage === "function") {
-            applyLanguage();
-          }
-        });
-
-      fetch("fabs-and-mobile-nav.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("fabs-and-mobile-nav-container").innerHTML = data;
-          // After loading the nav, initialize its event listeners
-          if (typeof initializeFabsAndMobileNavEventListeners === "function") {
-            initializeFabsAndMobileNavEventListeners();
-          }
-        });
-    });
   </script>
 </body>
 </html>
