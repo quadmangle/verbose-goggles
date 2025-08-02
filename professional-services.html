@@ -6,22 +6,23 @@
     Professional Services | [Your Company]
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="page-professional-services">
   <!-- Navigation Menu -->
-  <nav>
-    <a href="index.html" data-en="Business Operations" data-es="Operaciones Empresariales">Business Operations</a>
-    <a href="contact-center.html" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
-    <a href="it-support.html" data-en="IT Support" data-es="Soporte IT">IT Support</a>
-    <a href="professional-services.html" data-en="Professionals" data-es="Profesionales">Professionals</a>
+  <nav class="ops-nav">
+    <div class="nav-links">
+        <a href="index.html" class="nav-link" data-en="Business Operations" data-es="Operaciones Empresariales">Business Operations</a>
+        <a href="contact-center.html" class="nav-link" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
+        <a href="it-support.html" class="nav-link" data-en="IT Support" data-es="Soporte IT">IT Support</a>
+        <a href="professional-services.html" class="nav-link" data-en="Professionals" data-es="Profesionales">Professionals</a>
+    </div>
+    <!-- Toggles container -->
+    <div id="toggles" class="toggles">
+        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false">EN</button>
+        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
+    </div>
   </nav>
-
-  <!-- Toggles for language and theme -->
-  <div id="toggles">
-    <button id="btn-lang" aria-label="Toggle language" aria-pressed="false">EN</button>
-    <button id="btn-theme" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
-  </div>
 
   <!-- Header -->
   <header>
@@ -104,6 +105,7 @@
     </form>
   </section>
 
+  <div id="modal-root"></div>
   <script src="js/main.js" defer></script>
 </body>
 </html>

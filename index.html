@@ -6,25 +6,31 @@
     Business Operations Optimization | [Your Company]
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
 </head>
 <body class="page-business-ops">
   <!-- Navigation Menu -->
-  <nav>
-    <a href="index.html" data-en="Business Operations" data-es="Operaciones Empresariales">Business Operations</a>
-    <a href="contact-center.html" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
-    <a href="it-support.html" data-en="IT Support" data-es="Soporte IT">IT Support</a>
-    <a href="professional-services.html" data-en="Professionals" data-es="Profesionales">Professionals</a>
+  <nav class="ops-nav">
+    <div class="ops-logo">OPS</div>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link" data-en="Business Operations" data-es="Operaciones Empresariales">Business Operations</a>
+        <a href="contact-center.html" class="nav-link" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
+        <a href="it-support.html" class="nav-link" data-en="IT Support" data-es="Soporte IT">IT Support</a>
+        <a href="professional-services.html" class="nav-link" data-en="Professionals" data-es="Profesionales">Professionals</a>
+    </div>
+    <!-- Toggles container -->
+    <div id="toggles" class="toggles">
+        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false">EN</button>
+        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
+    </div>
   </nav>
 
-  <!-- Toggles container -->
-  <div id="toggles">
-    <button id="btn-lang" aria-label="Toggle language" aria-pressed="false">EN</button>
-    <button id="btn-theme" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
-  </div>
-
   <!-- Header -->
-  <header>
+  <header class="hero-section">
     <h1 data-en="Streamline Your Business Operations" data-es="Optimice Sus Operaciones Empresariales">
       Streamline Your Business Operations
     </h1>
@@ -37,55 +43,13 @@
     </a>
   </header>
 
-  <main>
-    <!-- Left Info Card -->
-    <div class="info-cards">
-      <h2 data-en="Optimize Your Business Operations" data-es="Optimice Sus Operaciones Empresariales">
-        Optimize Your Business Operations
-      </h2>
-      <p data-en="Streamlined processes, performance boosts, and scalable growth—delivered with expertise."
-         data-es="Procesos optimizados, mejoras de rendimiento y crecimiento escalable, entregados con experiencia.">
-        Streamlined processes, performance boosts, and scalable growth—delivered with expertise.
-      </p>
-      <ul>
-        <li data-en="Standardize workflows for operational excellence" data-es="Estandarice flujos de trabajo para la excelencia operativa">
-          Standardize workflows for operational excellence
-        </li>
-        <li data-en="Identify & eliminate process inefficiencies" data-es="Identifique y elimine ineficiencias de procesos">
-          Identify & eliminate process inefficiencies
-        </li>
-        <li data-en="Ensure regulatory compliance across your org" data-es="Asegure el cumplimiento normativo en su organización">
-          Ensure regulatory compliance across your org
-        </li>
-        <li data-en="Scale your business efficiently & securely" data-es="Escale su negocio de manera eficiente y segura">
-          Scale your business efficiently & securely
-        </li>
-      </ul>
-    </div>
-
-    <!-- Right Metrics Card -->
-    <div class="metrics-card" aria-label="Operations Metrics">
-      <h3>Operations</h3>
-      <div class="chart" aria-hidden="true">
-        <div class="line"></div>
-      </div>
-      <div class="metrics-values" aria-label="Financial metrics">
-        <span>Revenue: <strong>$1.20M</strong></span>
-        <span>Costs: <strong>$5M</strong></span>
-        <span>Profit: <strong>$50M</strong></span>
-      </div>
-
-      <div class="stats-section" aria-label="Efficiency Metrics">
-        <h4>Efficiency Metrics</h4>
-        <div>
-          <div class="stat-bar"><div class="stat-blue"></div></div>
-          <div class="stat-bar"><div class="stat-purple"></div></div>
-          <div class="stat-bar"><div class="stat-light-blue"></div></div>
-        </div>
-      </div>
-
-    </div>
+  <main class="grid-container">
+    <div class="card" id="card-ops" tabindex="0"></div>
+    <div class="card" id="card-cc" tabindex="0"></div>
+    <div class="card" id="card-it" tabindex="0"></div>
+    <div class="card" id="card-pro" tabindex="0"></div>
   </main>
+
   <!-- Contact Form -->
   <section id="form">
     <h2 data-en="Book Your Free Audit" data-es="Reserve Su Auditoría Gratis">
@@ -106,6 +70,51 @@
       </button>
     </form>
   </section>
+
+  <!-- FABs -->
+  <div class="fab-stack">
+    <button class="fab-btn" id="fab-chat" aria-label="Open Chatbot">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+    <button class="fab-btn" id="fab-join" aria-label="Join Us">
+      <i class="fas fa-user-plus"></i>
+    </button>
+    <button class="fab-btn" id="fab-contact" aria-label="Contact Us">
+      <i class="fas fa-envelope"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-bottom-nav">
+    <button id="mobile-home-btn" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span data-en="Home" data-es="Inicio">Home</span>
+    </button>
+    <button id="services-toggle" class="nav-item" aria-haspopup="true" aria-expanded="false">
+      <span class="hamburger-icon">&#9776;</span>
+      <span data-en="Services" data-es="Servicios">Services</span>
+    </button>
+    <div id="services-dropdown" class="services-dropdown">
+      <a href="contact-center.html" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
+      <a href="it-support.html" data-en="IT Support" data-es="Soporte IT">IT Support</a>
+      <a href="professional-services.html" data-en="Professionals" data-es="Profesionales">Professionals</a>
+    </div>
+    <button id="mobile-chatbot-btn" class="nav-item">
+      <i class="fas fa-robot"></i>
+      <span data-en="Chat" data-es="Chat">Chat</span>
+    </button>
+    <button id="mobile-lang-toggle" class="nav-item">
+        <i class="fas fa-globe"></i>
+        <span>EN</span>
+    </button>
+    <button id="mobile-theme-toggle" class="nav-item">
+        <i class="fas fa-moon"></i>
+        <span data-en="Dark" data-es="Oscuro">Dark</span>
+    </button>
+  </div>
+
+
+  <div id="modal-root"></div>
 
   <script src="js/main.js" defer></script>
 </body>
