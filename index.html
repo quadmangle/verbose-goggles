@@ -25,8 +25,8 @@
     </div>
     <!-- Toggles container -->
     <div id="toggles" class="toggles">
-        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false">EN</button>
-        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false">Dark Mode</button>
+        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false" data-en="EN" data-es="ES">EN</button>
+        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false" data-en="Dark Mode" data-es="Modo Oscuro">Dark Mode</button>
     </div>
   </nav>
   <div id="page-content">  <!-- Header -->
@@ -70,19 +70,19 @@
     </div>
 
     <!-- Right Metrics Card -->
-    <div class="metrics-card" aria-label="Operations Metrics">
-      <h3>Operations</h3>
+    <div class="metrics-card" aria-label="Operations Metrics" data-en-aria-label="Operations Metrics" data-es-aria-label="Métricas de Operaciones">
+      <h3 data-en="Operations" data-es="Operaciones">Operations</h3>
       <div class="chart" aria-hidden="true">
         <div class="line"></div>
       </div>
-      <div class="metrics-values" aria-label="Financial metrics">
-        <span>Revenue: <strong>$1.20M</strong></span>
-        <span>Costs: <strong>$5M</strong></span>
-        <span>Profit: <strong>$50M</strong></span>
+      <div class="metrics-values" aria-label="Financial metrics" data-en-aria-label="Financial metrics" data-es-aria-label="Métricas Financieras">
+        <span data-en="Revenue: " data-es="Ingresos: ">Revenue: <strong>$1.20M</strong></span>
+        <span data-en="Costs: " data-es="Costos: ">Costs: <strong>$5M</strong></span>
+        <span data-en="Profit: " data-es="Beneficio: ">Profit: <strong>$50M</strong></span>
       </div>
 
-      <div class="stats-section" aria-label="Efficiency Metrics">
-        <h4>Efficiency Metrics</h4>
+      <div class="stats-section" aria-label="Efficiency Metrics" data-en-aria-label="Efficiency Metrics" data-es-aria-label="Métricas de Eficiencia">
+        <h4 data-en="Efficiency Metrics" data-es="Métricas de Eficiencia">Efficiency Metrics</h4>
         <div>
           <div class="stat-bar"><div class="stat-blue"></div></div>
           <div class="stat-bar"><div class="stat-purple"></div></div>
@@ -119,6 +119,7 @@
 
   <div id="modal-root"></div></div>
   <div id="fabs-and-mobile-nav-container"></div>
+  <script src="js/langtheme.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
