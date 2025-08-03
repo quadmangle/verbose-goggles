@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Floating Action Buttons (FABs)
+   ========================================================================== */
+
+.fab-stack {
+  position: fixed;
+  bottom: 60px; /* Added 45px bottom margin to FABs as requested */
+  right: 15px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: flex-end;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide FABs on mobile/tablet */
+@media (max-width: 900px) {
+  .fab-stack {
+    display: none !important;
+  }
+}
+
+.fab-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  border: none;
+  box-shadow: 0 2px 12px #d1caf3bb;
+  cursor: pointer;
+  transition: background 0.19s, box-shadow 0.19s;
+  outline: none;
+}
+
+.fab-btn:hover,
+.fab-btn:focus {
+  background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+  box-shadow: 0 6px 28px #ff3bdc44;
+}
+
+.fab-btn span {
+  font-size: 0.94rem;
+  font-weight: 600;
+  margin-left: 0.4em;
+  pointer-events: none;
+  letter-spacing: 0.04em;
+}

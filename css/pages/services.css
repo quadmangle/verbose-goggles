@@ -1,0 +1,222 @@
+/* ==========================================================================
+   Generic Service Page Styles
+   (for Contact Center, IT Support, Professional Services)
+   ========================================================================== */
+
+.page-contact-center header, .page-it-support header, .page-professional-services header {
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.page-contact-center header h1, .page-it-support header h1, .page-professional-services header h1 {
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.page-contact-center header p, .page-it-support header p, .page-professional-services header p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.page-contact-center header a.cta-button, .page-it-support header a.cta-button, .page-professional-services header a.cta-button {
+  background: linear-gradient(45deg, #ab47bc, #7e57c2);
+  padding: 16px 38px;
+  font-size: 1.15rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(171, 71, 188, 0.6);
+}
+
+.page-contact-center header a.cta-button:hover, .page-it-support header a.cta-button:hover, .page-professional-services header a.cta-button:hover {
+  box-shadow: 0 14px 40px rgba(171, 71, 188, 0.9);
+  background: linear-gradient(45deg, #8e24aa, #5e35b1);
+}
+
+body.light.page-contact-center header a.cta-button, body.light.page-it-support header a.cta-button, body.light.page-professional-services header a.cta-button {
+  background: linear-gradient(45deg, #9c27b0, #ba68c8);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(156, 39, 176, 0.5);
+}
+
+body.light.page-contact-center header a.cta-button:hover, body.light.page-it-support header a.cta-button:hover, body.light.page-professional-services header a.cta-button:hover {
+  box-shadow: 0 14px 40px rgba(156, 39, 176, 0.8);
+  background: linear-gradient(45deg, #7b1fa2, #9575cd);
+}
+
+.page-contact-center section, .page-it-support section, .page-professional-services section {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.page-contact-center section h2, .page-it-support section h2, .page-professional-services section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.page-contact-center section p, .page-it-support section p, .page-professional-services section p,
+.page-contact-center section ul, .page-it-support section ul, .page-professional-services section ul,
+.page-contact-center section blockquote, .page-it-support section blockquote, .page-professional-services section blockquote {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.page-contact-center section ul, .page-it-support section ul, .page-professional-services section ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.page-contact-center section ul li, .page-it-support section ul li, .page-professional-services section ul li {
+  margin-bottom: 10px;
+}
+
+.page-contact-center blockquote, .page-it-support blockquote, .page-professional-services blockquote {
+  font-style: italic;
+  border-left: 4px solid #7e57c2;
+  padding-left: 15px;
+  color: #ddd;
+}
+
+.page-contact-center blockquote strong, .page-it-support blockquote strong, .page-professional-services blockquote strong {
+  font-weight: 700;
+  display: block;
+  margin-top: 10px;
+  color: #eee;
+}
+
+body.light.page-contact-center blockquote, body.light.page-it-support blockquote, body.light.page-professional-services blockquote {
+  color: #555;
+  border-left-color: #ba68c8;
+}
+
+body.light.page-contact-center blockquote strong, body.light.page-it-support blockquote strong, body.light.page-professional-services blockquote strong {
+  color: #444;
+}
+
+.page-contact-center section#form, .page-it-support section#form, .page-professional-services section#form {
+  max-width: 480px;
+  margin: 0 auto 60px;
+  background: rgba(255 255 255 / 0.1);
+  padding: 30px 30px 40px;
+  border-radius: 14px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light.page-contact-center section#form, body.light.page-it-support section#form, body.light.page-professional-services section#form {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.05);
+}
+
+.page-contact-center section#form h2, .page-it-support section#form h2, .page-professional-services section#form h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.page-contact-center section#form form, .page-it-support section#form form, .page-professional-services section#form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.page-contact-center section#form input, .page-it-support section#form input, .page-professional-services section#form input {
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light.page-contact-center section#form input, body.light.page-it-support section#form input, body.light.page-professional-services section#form input {
+  border: 1px solid #ccc;
+  background: #f5f5f7;
+  color: #222;
+}
+
+.page-contact-center section#form button, .page-it-support section#form button, .page-professional-services section#form button {
+  padding: 14px 0;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: white;
+  background: #5e35b1;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  user-select: none;
+}
+
+.page-contact-center section#form button:hover, .page-it-support section#form button:hover, .page-professional-services section#form button:hover {
+  background: #4527a0;
+}
+
+body.light.page-contact-center section#form button, body.light.page-it-support section#form button, body.light.page-professional-services section#form button {
+  background: #7e57c2;
+  color: white;
+}
+
+body.light.page-contact-center section#form button:hover, body.light.page-it-support section#form button:hover, body.light.page-professional-services section#form button:hover {
+  background: #5e35b1;
+}
+
+/* ==== IT Support Page Specific Styles ==== */
+.page-it-support .card {
+  background: #2c2c4a;
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+  transition: background 0.3s;
+}
+body.light.page-it-support .card {
+  background: #e0e0f8;
+  color: #222;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.page-it-support .card .icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+.page-it-support .card .title {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  user-select: none;
+}
+.page-it-support .card .content {
+  font-weight: 500;
+  font-size: 1.1rem;
+  opacity: 0.85;
+  user-select: text;
+}
+
+@media (max-width: 768px) {
+  .page-contact-center header h1, .page-it-support header h1, .page-professional-services header h1 {
+    font-size: 2.2rem;
+  }
+  .page-contact-center nav, .page-it-support nav, .page-professional-services nav {
+    gap: 15px;
+  }
+  .page-contact-center #toggles, .page-it-support #toggles, .page-professional-services #toggles {
+    justify-content: center;
+  }
+  .page-contact-center section, .page-it-support section, .page-professional-services section,
+  .page-contact-center section#form, .page-it-support section#form, .page-professional-services section#form {
+    padding: 0 15px;
+    max-width: 100%;
+  }
+  .page-it-support .card {
+    max-width: 100%;
+    padding: 25px 20px;
+  }
+}

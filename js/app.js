@@ -1,51 +1,6 @@
 // =================================================================================
-// EVENT LISTENERS FOR FABs AND MOBILE NAV
+// THEME AND LANGUAGE STATE MANAGEMENT
 // =================================================================================
-
-function initializeFabsAndMobileNavEventListeners() {
-  // FABs
-  document.getElementById("fab-chat").onclick = openChatbot;
-  document.getElementById("fab-join").onclick = openJoinModal;
-  document.getElementById("fab-contact").onclick = openContactModal;
-
-  // Mobile Nav
-  document.getElementById("mobile-chatbot-btn").onclick = openChatbot;
-  const servicesToggleBtn = document.getElementById("services-toggle");
-  const servicesDropdown = document.getElementById("services-dropdown");
-
-  if (servicesToggleBtn) {
-    servicesToggleBtn.addEventListener("click", () => {
-      const expanded =
-        servicesToggleBtn.getAttribute("aria-expanded") === "true";
-      servicesToggleBtn.setAttribute("aria-expanded", !expanded);
-      servicesDropdown.classList.toggle("active");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (
-        servicesDropdown &&
-        !servicesToggleBtn.contains(e.target) &&
-        !servicesDropdown.contains(e.target)
-      ) {
-        servicesDropdown.classList.remove("active");
-        servicesToggleBtn.setAttribute("aria-expanded", false);
-      }
-    });
-  }
-
-
-  document
-    .getElementById("mobile-home-btn")
-    .addEventListener("click", () => alert("Navigate to Home"));
-
-  // Language and Theme Toggles
-  document.getElementById("mobile-lang-toggle").onclick = toggleLanguage;
-  document.getElementById("mobile-theme-toggle").onclick = toggleTheme;
-}
-
-// It might be better to have a single, shared implementation of these functions.
-// For now, to keep the components decoupled, we are duplicating some code.
-// We can refactor this later to have a single source of truth for theme and language.
 
 let lang = localStorage.getItem("lang") || "en";
 let theme = localStorage.getItem("theme") || "light";
@@ -55,9 +10,13 @@ function applyTheme() {
   const themeToggleButtons = document.querySelectorAll(
     "#theme-toggle, #mobile-theme-toggle, #chatbot-theme, #contact-theme-toggle"
   );
-  themeToggleButtons.forEach(
-    (btn) => (btn.textContent = theme === "light" ? "Dark" : "Light")
-  );
+  themeToggleButtons.forEach((btn) => {
+    if (lang === "es") {
+      btn.textContent = theme === "light" ? "Oscuro" : "Claro";
+    } else {
+      btn.textContent = theme === "light" ? "Dark" : "Light";
+    }
+  });
   localStorage.setItem("theme", theme);
 }
 
@@ -99,9 +58,13 @@ function applyLanguage() {
       }
     });
 
-  if (typeof renderCards === "function") {
-    renderCards();
-  }
+    document.querySelectorAll('[data-en-aria-label]').forEach(el => {
+        const text = el.getAttribute('data-' + lang + '-aria-label');
+        if (!text) return;
+        el.setAttribute('aria-label', text);
+    });
+
+  renderCards();
   const modalRoot = document.getElementById("modal-root");
   if (modalRoot) {
     modalRoot.innerHTML = ""; // Close any open modals
@@ -114,6 +77,121 @@ function toggleLanguage() {
   applyLanguage();
 }
 
+// =================================================================================
+// INITIALIZE PAGE
+// =================================================================================
+
+async function loadHTML(url, containerId) {
+  const container = document.getElementById(containerId);
+  if (container) {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const text = await response.text();
+        container.innerHTML = text;
+      } else {
+        console.error(`Failed to load HTML from ${url}: ${response.status} ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error(`Error fetching HTML from ${url}:`, error);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await Promise.all([
+    loadHTML('_nav.html', 'nav-container'),
+    loadHTML('_fabs.html', 'fabs-container')
+  ]);
+
+  applyTheme();
+  applyLanguage();
+  initializeEventListeners();
+});
+
+
+// =================================================================================
+// DYNAMIC CONTENT RENDERING
+// =================================================================================
+
+function renderCards() {
+  Object.entries({ ops: "ops", cc: "cc", it: "it", pro: "pro" }).forEach(
+    ([id, key]) => {
+      const cardElement = document.getElementById("card-" + id);
+      if (cardElement) {
+        let c = svc[key][lang];
+        cardElement.innerHTML = `
+          <div class="title">${c.title}</div>
+          <div class="icon">${c.icon}</div>
+          <div class="content"><p>${c.desc}</p></div>
+        `;
+      }
+    }
+  );
+}
+
+// =================================================================================
+// MODAL MANAGEMENT
+// =================================================================================
+
+function openModal(key) {
+  let data = svc[key][lang].modal;
+  let m = document.createElement("div");
+  m.className = "modal-backdrop";
+  m.innerHTML = `
+    <div class="ops-modal" tabindex="-1" role="dialog" aria-modal="true" id="draggable-modal">
+      <button class="modal-x" aria-label="CERRAR" id="modal-x">X</button>
+      <div class="modal-header">
+        <img class="modal-img" src="${data.img}" alt="${data.imgAlt}" />
+        <div><div class="modal-title">${data.title}</div></div>
+      </div>
+      <div class="modal-content-body">${data.content}</div>
+      <div class="modal-video">${data.video}</div>
+      <ul style="margin-bottom:1.2em; margin-left:1.3em;">
+        ${data.features.map((i) => `<li>${i}</li>`).join("")}
+      </ul>
+      <div class="modal-actions">
+        <a class="modal-btn" href="${data.learn}" target="_blank">${
+    lang === "en" ? "Learn More" : "Más Información"
+  }</a>
+        <button class="modal-btn" onclick="alert('Integrate with chatbot')">${
+          lang === "en" ? "Ask Chattia" : "Preguntar Chattia"
+        }</button>
+        <button class="modal-btn cta" id="modal-contact-btn">${
+          lang === "en" ? "Contact Us" : "Contáctanos"
+        }</button>
+        <button class="modal-btn" id="cancel-btn">${
+          lang === "en" ? "Cancel" : "Cancelar"
+        }</button>
+      </div>
+    </div>`;
+  let root = document.getElementById("modal-root");
+  root.innerHTML = "";
+  root.appendChild(m);
+  let modal = m.querySelector(".ops-modal");
+
+  function close() {
+    root.innerHTML = "";
+  }
+  m.onclick = (e) => (e.target === m ? close() : 0);
+  modal.querySelector(".modal-x").onclick = close;
+  modal.querySelector("#cancel-btn").onclick = close;
+  document.addEventListener(
+    "keydown",
+    function esc(e) {
+      if (e.key === "Escape") {
+        close();
+        document.removeEventListener("keydown", esc);
+      }
+    },
+    { once: true }
+  );
+  modal.querySelector("#modal-contact-btn").onclick = () => {
+    openContactModal();
+    close();
+  };
+  makeDraggable(modal);
+}
 
 function openContactModal() {
   showModal("contact");
@@ -417,6 +495,90 @@ function contactModalHTML() {
   `;
 }
 
+// =================================================================================
+// EVENT LISTENERS
+// =================================================================================
+
+function initializeEventListeners() {
+  // Card Modals
+  Object.entries({ ops: "ops", cc: "cc", it: "it", pro: "pro" }).forEach(
+    ([id, key]) => {
+      const cardElement = document.getElementById("card-" + id);
+      if (cardElement) {
+        cardElement.onclick = () => openModal(key);
+        cardElement.onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " ") openModal(key);
+        };
+      }
+    }
+  );
+
+  // Desktop Language and Theme Toggles
+  const langToggle = document.getElementById("lang-toggle");
+  if (langToggle) langToggle.onclick = toggleLanguage;
+
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) themeToggle.onclick = toggleTheme;
+
+  // FABs and Mobile Nav
+  initializeFabsAndMobileNavEventListeners();
+}
+
+function initializeFabsAndMobileNavEventListeners() {
+  // This function will be called on pages that have the FABs and mobile nav
+  // It's safe to call on any page because it checks for the existence of elements
+
+  // FABs
+  const fabChat = document.getElementById("fab-chat");
+  if (fabChat) fabChat.onclick = openChatbot;
+
+  const fabJoin = document.getElementById("fab-join");
+  if (fabJoin) fabJoin.onclick = openJoinModal;
+
+  const fabContact = document.getElementById("fab-contact");
+  if (fabContact) fabContact.onclick = openContactModal;
+
+  // Mobile Nav
+  const mobileChatbotBtn = document.getElementById("mobile-chatbot-btn");
+  if (mobileChatbotBtn) mobileChatbotBtn.onclick = openChatbot;
+
+  const servicesToggleBtn = document.getElementById("services-toggle");
+  const servicesDropdown = document.getElementById("services-dropdown");
+
+  if (servicesToggleBtn && servicesDropdown) {
+    servicesToggleBtn.addEventListener("click", () => {
+      const expanded =
+        servicesToggleBtn.getAttribute("aria-expanded") === "true";
+      servicesToggleBtn.setAttribute("aria-expanded", !expanded);
+      servicesDropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !servicesToggleBtn.contains(e.target) &&
+        !servicesDropdown.contains(e.target)
+      ) {
+        servicesDropdown.classList.remove("active");
+        servicesToggleBtn.setAttribute("aria-expanded", false);
+      }
+    });
+  }
+
+  // const mobileHomeBtn = document.getElementById("mobile-home-btn");
+  // if (mobileHomeBtn) {
+  //   mobileHomeBtn.addEventListener("click", () => alert("Navigate to Home"));
+  // }
+
+  const mobileLangToggle = document.getElementById("mobile-lang-toggle");
+  if (mobileLangToggle) mobileLangToggle.onclick = toggleLanguage;
+
+  const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
+  if (mobileThemeToggle) mobileThemeToggle.onclick = toggleTheme;
+}
+
+// =================================================================================
+// UTILITIES
+// =================================================================================
 
 function makeDraggable(elem, dragHandle) {
   let isDown = false,
