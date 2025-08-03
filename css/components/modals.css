@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Modal Styles
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 1999;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(44, 26, 73, 0.31);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.ops-modal,
+.modal-content,
+#chatbot-container {
+  min-width: 310px;
+  max-width: 490px;
+  width: 96vw;
+  margin-top: 5vh;
+  background: #fff;
+  color: #1a1930;
+  border-radius: 2rem;
+  box-shadow: 0 6px 60px #5e24bb25, 0 0 0 2px #fff1;
+  padding: 2.1rem 2.2rem 1.3rem 2.2rem;
+  position: absolute;
+  left: 50%;
+  top: 12vh;
+  transform: translate(-50%, 0);
+  transition: box-shadow 0.17s;
+  cursor: default;
+  z-index: 2222;
+}
+
+body.dark .ops-modal,
+body.dark .modal-content,
+body.dark #chatbot-container {
+  background: #251541;
+  color: #fafbfe;
+}
+
+.dragging {
+  opacity: 0.98;
+  cursor: move !important;
+  transition: none !important;
+}
+
+.modal-header {
+  display: flex;
+  gap: 1.3em;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.modal-header img.modal-img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 1.2em;
+  border: 2px solid #f5e0ff;
+}
+
+.modal-title {
+  font-size: 1.16em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modal-content-body {
+  margin-bottom: 1.1em;
+  font-size: 1.05em;
+}
+
+.modal-video {
+  background: #f7f4fb;
+  color: #ab8adc;
+  border-radius: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+body.dark .modal-video {
+  background: #18162a;
+  color: #ffe7fe;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.8em;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 1.4em;
+}
+
+.modal-btn,
+.submit-button {
+  border: none;
+  border-radius: 1.2em;
+  background: #eae6fc;
+  color: #4d1d79;
+  padding: 0.65em 1.4em;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 0.5em;
+  transition: background 0.17s;
+}
+
+.modal-btn.cta,
+.submit-button[style*="var(--clr-accent)"] {
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+  color: #fff;
+}
+
+.modal-btn:hover,
+.modal-btn:focus,
+.submit-button:hover,
+.submit-button:focus {
+  background: #f9d4fc;
+  outline: none;
+}
+
+.modal-btn.cta:hover,
+.submit-button[style*="var(--clr-accent)"]:hover {
+  background: linear-gradient(90deg, var(--clr-accent), var(--clr-primary));
+}
+
+.modal-x,
+.close-modal {
+  position: absolute;
+  top: 1.1em;
+  right: 1.7em;
+  font-size: 1.8rem;
+  color: var(--clr-accent);
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: 3;
+}
+
+.modal-x:focus,
+.close-modal:focus {
+  outline: 2px solid var(--clr-accent);
+}

@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+/* ==========================================================================
+   Master Stylesheet
+   ========================================================================== */
+
+/* --- Base Styles --- */
+@import url('base.css');
+
+/* --- Component Styles --- */
+@import url('components/nav.css');
+@import url('components/cards.css');
+@import url('components/modals.css');
+@import url('components/fabs.css');
+
+/* --- Page-Specific Styles --- */
+@import url('pages/business-ops.css');
+@import url('pages/services.css');
+=======
 /* ==================================== */
 /* 1. Global & Theme Variables */
 /* ==================================== */
@@ -572,3 +590,4 @@ body.dark .ops-modal {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+>>>>>>> d8ed69bf8f72d80895ba613709b147bdb410e34b

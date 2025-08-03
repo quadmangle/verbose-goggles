@@ -1,0 +1,49 @@
+:root {
+  --clr-primary: #00c4ff;
+  --clr-accent: #ff3bdc;
+  --clr-accent-dark: #e000be;
+  --clr-glass: rgba(255, 255, 255, 0.77);
+  --clr-footer: #251541;
+  --clr-dark-bg: #13162a;
+  --clr-card-shadow: 0 2px 28px #b6b9f7a8,
+    -20px 20px 40px hsl(270 42% 45% / 0.18);
+  --clr-card-shadow-dark: 0 2px 24px #11142b88;
+}
+
+body {
+  background: linear-gradient(135deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: animated-gradient 15s ease infinite;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  color: #333;
+  box-sizing: border-box;
+  padding-bottom: 75px;
+  transition: color 0.2s;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.dark {
+  background: #121212;
+  color: #fafbfe;
+  animation: none;
+}
+
+body.light {
+  color: #222;
+}
+
+@keyframes animated-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

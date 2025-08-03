@@ -7,24 +7,9 @@
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/fabs-and-mobile-nav.css">
 </head>
 <body class="page-professional-services">
-  <!-- Navigation Menu -->
-  <nav class="ops-nav">
-    <div class="ops-logo">OPS</div>
-    <div class="nav-links">
-        <a href="index.html" class="nav-link" data-en="Business Operations" data-es="Gestion">Business Operations</a>
-        <a href="contact-center.html" class="nav-link" data-en="Contact Center" data-es="Centro de Contacto">Contact Center</a>
-        <a href="it-support.html" class="nav-link" data-en="IT Support" data-es="Soporte IT">IT Support</a>
-        <a href="professional-services.html" class="nav-link" data-en="Professionals" data-es="Profesionales">Professionals</a>
-    </div>
-    <!-- Toggles container -->
-    <div id="toggles" class="toggles">
-        <button id="lang-toggle" class="toggle-btn" aria-label="Toggle language" aria-pressed="false" data-en="EN" data-es="ES">EN</button>
-        <button id="theme-toggle" class="toggle-btn" aria-label="Toggle dark/light theme" aria-pressed="false" data-en="Dark" data-es="Oscuro">Dark</button>
-    </div>
-  </nav>
+  <div id="nav-container"></div>
 
   <!-- Header -->
   <header>
@@ -117,7 +102,8 @@
     </form>
   </section>
   <div id="modal-root"></div>
-  <script src="js/langtheme.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <div id="fabs-container"></div>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>
