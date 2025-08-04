@@ -1,0 +1,11 @@
+{
+  "name": "verbose-goggles",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "sass scss/style.scss css/style.css --style=compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.77.6"
+  }
+}
