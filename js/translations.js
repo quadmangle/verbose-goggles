@@ -1,5 +1,5 @@
 // A single object to hold all translations
-const translations = {
+export const translations = {
   // Service-specific data, including content for the dynamic cards on index.html
   services: {
     ops: {
@@ -252,10 +252,10 @@ const translations = {
   },
 };
 
-let currentLanguage = localStorage.getItem('lang') || 'en';
-let currentTheme = localStorage.getItem('theme') || 'light';
+export let currentLanguage = localStorage.getItem('lang') || 'en';
+export let currentTheme = localStorage.getItem('theme') || 'light';
 
-function updateContent() {
+export function updateContent() {
   const elements = document.querySelectorAll('[data-key]');
   const langToggle = document.getElementById('lang-toggle');
   const langData = translations[currentLanguage];
@@ -289,32 +289,22 @@ function updateContent() {
   langToggle.textContent = currentLanguage.toUpperCase();
 }
 
-function toggleLanguage() {
+export function toggleLanguage() {
   currentLanguage = (currentLanguage === 'en') ? 'es' : 'en';
   localStorage.setItem('lang', currentLanguage);
   updateContent();
 }
 
-function updateTheme() {
+export function updateTheme() {
   document.body.classList.remove('light', 'dark');
   document.body.classList.add(currentTheme);
   const themeToggle = document.getElementById('theme-toggle');
   themeToggle.textContent = (currentTheme === 'light') ? 'Dark' : 'Light';
 }
 
-function toggleTheme() {
+export function toggleTheme() {
   currentTheme = (currentTheme === 'light') ? 'dark' : 'light';
   localStorage.setItem('theme', currentTheme);
   updateTheme();
 }
 
-// Event Listeners for Toggles
-document.addEventListener('DOMContentLoaded', () => {
-  // Apply initial language and theme from localStorage
-  updateContent();
-  updateTheme();
-  
-  // Toggle Buttons
-  document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
-  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-});
