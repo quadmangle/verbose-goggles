@@ -7,10 +7,8 @@
 function createServiceCards(services, lang) {
   const container = document.getElementById('cards-section');
   if (!container) return; // Only run this on the index page
-
   // Clear any existing content
   container.innerHTML = '';
-
   Object.keys(services).forEach(key => {
     const serviceData = services[key];
     const cardData = serviceData[lang];
@@ -31,21 +29,17 @@ function createServiceCards(services, lang) {
     container.appendChild(card);
   });
 }
-
 function createModal(serviceKey, lang) {
   const modalRoot = document.getElementById('modal-root');
   const serviceData = translations.services[serviceKey];
   const modalData = serviceData[lang].modal;
-
   if (!modalData) return;
 
   // Create modal backdrop and content
   const modalBackdrop = document.createElement('div');
   modalBackdrop.className = 'modal-backdrop';
-
   const modalContent = document.createElement('div');
   modalContent.className = 'ops-modal';
-
   // Build the modal HTML with new buttons in the footer
   modalContent.innerHTML = `
     <button class="close-modal" aria-label="Close modal">×</button>
@@ -66,14 +60,11 @@ function createModal(serviceKey, lang) {
       <a href="contact-center.html#form" class="modal-btn" data-key="modal-contact-us"></a>
     </div>
   `;
-
   // Append modal to the DOM
   modalBackdrop.appendChild(modalContent);
   modalRoot.appendChild(modalBackdrop);
-
   // Update button text with translations
   updateModalContent(modalContent, lang);
-
   // Add event listeners for new buttons
   // Note: These are placeholders. You will need to replace the `console.log` calls
   // with actual calls to your Cloudflare Workers or other services.
@@ -84,7 +75,6 @@ function createModal(serviceKey, lang) {
     alert('Launching Chatbot...');
     closeModal();
   });
-
   const joinUsBtn = document.getElementById('join-us-btn');
   joinUsBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -92,22 +82,18 @@ function createModal(serviceKey, lang) {
     alert('Launching Join Us form...');
     closeModal();
   });
-  
-  // Add event listener to close button
+    // Add event listener to close button
   modalContent.querySelector('.close-modal').addEventListener('click', closeModal);
-
   // Close modal when clicking outside of it
   modalBackdrop.addEventListener('click', (event) => {
     if (event.target === modalBackdrop) {
       closeModal();
     }
   });
-
   function closeModal() {
     modalRoot.innerHTML = '';
   }
 }
-
 // Helper function to update content inside the modal after creation
 function updateModalContent(modalElement, lang) {
   const elements = modalElement.querySelectorAll('[data-key]');
@@ -119,7 +105,6 @@ function updateModalContent(modalElement, lang) {
     }
   });
 }
-
 // Function to handle form submission (prevents default behavior)
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -172,7 +157,6 @@ async function loadHTML(url, containerId) {
     }
   }
 }
-
 document.addEventListener("DOMContentLoaded", async () => {
   await Promise.all([
     loadHTML('_nav.html', 'nav-container'),
@@ -183,8 +167,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   applyLanguage();
   initializeEventListeners();
 });
-
-
 // =================================================================================
 // DYNAMIC CONTENT RENDERING
 // =================================================================================
@@ -330,11 +312,9 @@ function openChatbot() {
       </div>
     </div>`;
   document.body.appendChild(c);
-
   let botThemeBtn = c.querySelector("#chatbot-theme");
   let botLangBtn = c.querySelector("#chatbot-lang");
   let chatbotCont = c.querySelector("#chatbot-container");
-
   c.onclick = (e) => {
     if (e.target === c) c.remove();
   };
@@ -606,20 +586,16 @@ function initializeFabsAndMobileNavEventListeners() {
   // FABs
   const fabChat = document.getElementById("fab-chat");
   if (fabChat) fabChat.onclick = openChatbot;
-
   const fabJoin = document.getElementById("fab-join");
   if (fabJoin) fabJoin.onclick = openJoinModal;
-
   const fabContact = document.getElementById("fab-contact");
   if (fabContact) fabContact.onclick = openContactModal;
 
   // Mobile Nav
   const mobileChatbotBtn = document.getElementById("mobile-chatbot-btn");
   if (mobileChatbotBtn) mobileChatbotBtn.onclick = openChatbot;
-
   const servicesToggleBtn = document.getElementById("services-toggle");
   const servicesDropdown = document.getElementById("services-dropdown");
-
   if (servicesToggleBtn && servicesDropdown) {
     servicesToggleBtn.addEventListener("click", () => {
       const expanded =
@@ -661,20 +637,17 @@ function makeDraggable(elem, dragHandle) {
     startY = 0;
   let header = dragHandle || elem;
   header.style.cursor = "move";
-
   header.onmousedown = function (e) {
     isDown = true;
     elem.classList.add("dragging");
     startX = e.clientX - (parseInt(elem.style.left) || window.innerWidth / 2);
     startY = e.clientY - (parseInt(elem.style.top) || window.innerHeight / 4);
-
     document.onmousemove = function (e) {
       if (!isDown) return;
       elem.style.left = `${e.clientX - startX}px`;
       elem.style.top = `${e.clientY - startY}px`;
       elem.style.transform = "none";
     };
-
     document.onmouseup = function () {
       isDown = false;
       elem.classList.remove("dragging");
@@ -684,11 +657,3 @@ function makeDraggable(elem, dragHandle) {
     return false;
   };
 }
-=======
-  // --- Form Submission Logic ---
-  const forms = document.querySelectorAll('form');
-  forms.forEach(form => {
-    form.addEventListener('submit', handleFormSubmit);
-  });
-});
->>>>>>> d8ed69bf8f72d80895ba613709b147bdb410e34b:js/main.js
