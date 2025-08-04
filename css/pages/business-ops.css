@@ -304,20 +304,3 @@ body.light.page-business-ops section#form button {
   color: white;
 }
 
-@media (max-width: 900px) {
-  .page-business-ops main {
-    flex-direction: column;
-    align-items: center;
-  }
-  .page-business-ops .metrics-card {
-    width: 100%;
-    max-width: 380px;
-  }
-  .page-business-ops nav {
-    justify-content: center;
-    gap: 20px;
-  }
-  .page-business-ops #toggles {
-    justify-content: center;
-  }
-}
