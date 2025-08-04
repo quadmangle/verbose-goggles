@@ -14,12 +14,6 @@
   transition: opacity 0.3s ease;
 }
 
-/* Hide FABs on mobile/tablet */
-@media (max-width: 900px) {
-  .fab-stack {
-    display: none !important;
-  }
-}
 
 .fab-btn {
   width: 58px;
