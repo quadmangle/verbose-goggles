@@ -3,14 +3,13 @@
    ========================================================================== */
 
 /* --- Base Styles --- */
-@import url('base.css');
+@use 'base';
 
 /* --- Component Styles --- */
-@import url('components/nav.css');
-@import url('components/cards.css');
-@import url('components/modals.css');
-@import url('components/fabs.css');
+@use 'components/cards';
+@use 'components/modals';
+@use 'components/fabs';
 
 /* --- Page-Specific Styles --- */
-@import url('pages/business-ops.css');
-@import url('pages/services.css');
+@use 'pages/business-ops';
+@use 'pages/services';

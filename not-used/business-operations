@@ -6,7 +6,7 @@
     Business Operations Optimization | Ops Online Support
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body class="page-business-ops">
   <!-- Navigation Menu -->
